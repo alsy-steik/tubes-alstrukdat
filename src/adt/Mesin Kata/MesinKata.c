@@ -13,10 +13,8 @@ Kata currentKata;
 
 void ignoreBlank() {
     while(cc == BLANK) {
-        // puts("a");
         adv();
     }
-        // puts("n");
 }
 
 void startKata(const char* path) {
