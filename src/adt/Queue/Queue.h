@@ -16,7 +16,7 @@ boolean isEmpty(Queue q);
 
 void enqueue(Queue *q, const char *nama_barang);
 
-char *dequeue(Queue *q);
+void dequeue(Queue *q);
 
 char *front(Queue q);
 

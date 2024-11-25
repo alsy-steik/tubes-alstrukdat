@@ -18,11 +18,8 @@ void enqueue(Queue* q, const char* nama_barang) {
     ArrayDinInsertEnd(&(q->arr), createBarang(nama_barang, -1));
 }
 
-char* dequeue(Queue* q) {
-    char* a = (q->arr).arr[0].name;
+void dequeue(Queue* q) {
     ArrayDinDeleteBeginning(&(q->arr));
-
-    return a;
 }
 
 boolean contains(Queue q, const char* search) {
