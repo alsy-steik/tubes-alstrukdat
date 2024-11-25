@@ -3,7 +3,11 @@
 
 
 void START(){
+  
+  char path[] = "/save/config.txt";
 
-  printf("File konfigurasi aplikasi berhasil dibaca. PURRMART berhasil dijalankan.")
+  file = fopen(path);
+  printf("File konfigurasi aplikasi berhasil dibaca. PURRMART berhasil dijalankan.");
+  fclose (file);
   return;
 }
