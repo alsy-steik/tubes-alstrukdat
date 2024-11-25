@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 
-void Load(const char* filename){
+boolean Load(const char* filename){
   FILE *file;
   char path[100];  
   int i = 0;
@@ -22,12 +22,13 @@ void Load(const char* filename){
  
   file = fopen(path, "r");
   if (file) {
-    printf("Save file berhasil dibaca. PURRMART berhasil dijalankan.");
     fclose(file);
+    printf("Save file berhasil dibaca. PURRMART berhasil dijalankan.");
+    return 0;
   } else {
     printf("Save file tidak ditemukan. PURRMART gagal dijalankan.");
   }  
-  return;
+  return 1;
 }
 
 int main () {
