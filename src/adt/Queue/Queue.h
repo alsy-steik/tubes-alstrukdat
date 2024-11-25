@@ -1,8 +1,8 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#include "../boolean.h"
-#include "ArrayDin.h"
+#include "../../boolean.h"
+#include "../ArrayDin/ArrayDin.h"
 
 #define QUEUE_INITIAL_SIZE 100;
 typedef struct

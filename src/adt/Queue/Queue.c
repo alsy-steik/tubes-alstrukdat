@@ -1,7 +1,7 @@
 #include "Queue.h"
-#include "ArrayDin.h"
-#include "Barang.h"
-#include "../boolean.h"
+#include "../ArrayDin/ArrayDin.h"
+#include "../Barang/Barang.h"
+#include "../../boolean.h"
 
 #include <stdio.h>
 #include <stdlib.h>

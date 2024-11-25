@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../../boolean.h"
+#include "../../boolean.h"
 #include "../ArrayStat/ArrayStat.h"
 #include "../ArrayDin/ArrayDin.h"
 
@@ -34,6 +34,7 @@ boolean is_same_string (const char str1[], const char str2[]);
 int getNum();
 void saveFile(const char *filename, ArrayStat *user, ArrayDin *barang);
 void PrintKata(Kata kata);
+boolean Load(const char *filename, ArrayStat* user, ArrayDin *barang);
 
 #endif
 
