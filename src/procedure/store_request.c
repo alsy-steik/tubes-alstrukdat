@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h> /*DIPERTANYAKAN*/
 #include "boolean.h"
 #include "Queue.h"
 #include "ArrayDin.h"
@@ -29,18 +28,14 @@ boolean is_same_string(const char str1[], const char str2[]){
 /*----------------------------------------------------DIVIDER-----------------------------------------------------------*/
 
 
-void StoreRequest(ArrayDin arr){
+void StoreRequest(ArrayDin arr, Queue requestQueue){
     printf("Masukkan nama item:\n");
 
     startKata(NULL);
-
-    char item_name_request[currentKata.length +1];
-    strcpy(item_name_request, currentKata.buffer); /*DIPERTANYAKAN*/
-
     /*----------------------------------------------------DIVIDER-----------------------------------------------------------*/
 
     if (isEmpty(requestQueue)){
-        enqueue(&requestQueue, &item_name_request);
+        enqueue(&requestQueue, &currentKata.buffer);
     }
 
     /*----------------------------------------------------DIVIDER-----------------------------------------------------------*/
@@ -58,7 +53,7 @@ void StoreRequest(ArrayDin arr){
 
         while (!isEmpty(temp)){
             val = dequeue(&temp);
-            if (is_same_string(item_name_request, val)){
+            if (is_same_string(currentKata.buffer, val)){
                 Mark_Antrean++;
             }
             enqueue(&requestQueue, val);
@@ -71,9 +66,9 @@ void StoreRequest(ArrayDin arr){
 
         if (N > 0){
             for (int j = 0; j < N; j++){
-                Barang storelist = getArrayDinElmt(arr,i);
+                Barang storelist = getArrayDinElmt(arr,j);
                 
-                if (is_same_string(item_name_request, storelist.name)){
+                if (is_same_string(currentKata.buffer, storelist.name)){
                     Mark_Supply++;
                 }
             }
@@ -95,7 +90,7 @@ void StoreRequest(ArrayDin arr){
         }
 
         else{
-            enqueue(&requestQueue, &item_name_request);
+            enqueue(&requestQueue, &currentKata.buffer);
             printf("Barang berhasil ditambahkan di antrean\n");
         }
     }
