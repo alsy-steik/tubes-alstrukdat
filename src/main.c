@@ -4,6 +4,8 @@
 #include "adt/ArrayDin/ArrayDin.h"
 #include "adt/ArrayStat/ArrayStat.h"
 
+void help(int menu);
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -47,7 +49,7 @@ int main() {
                 printf("File '%s' not found.\n", currentKata.buffer);
             }
         } else if(is_same_string(currentKata.buffer, "HELP")) {
-            help(0);
+            help(1);
         } else {
             printf("%s : command not found");
         }

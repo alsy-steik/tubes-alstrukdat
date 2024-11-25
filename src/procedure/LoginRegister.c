@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "../boolean.h"
-#include "../adt/Mesin Kata/MesinKata.h"
-#include "../adt/Mesin Karakter/MesinKarakter.h"
+#include "../adt/MesinKata/MesinKata.h"
+#include "../adt/MesinKarakter/MesinKarakter.h"
 #include "../adt/User/User.h"
 
 ListUser USERS;
@@ -62,7 +62,7 @@ void Login(){
 
     printf("== Login ==\n");
     printf("Masukkan Username: \n");
-    startKata();
+    startKata(NULL);
     KataKeString(currentKata, Username);
 
     for (Counter = 0; Counter < USERS.lengthEff; Counter++){
@@ -75,7 +75,7 @@ void Login(){
     }
 
     printf("Masukkan Password: \n");
-    startKata();
+    startKata(NULL);
     KataKeString(currentKata, Password);
 
     if (BandingString(Password, USERS.ElUser[CurrentindeksUser].password)){
@@ -98,7 +98,7 @@ void Register(){
 
     printf("== Register ==\n");
     printf("Masukkan Username: \n");
-    startKata();
+    startKata(NULL);
     KataKeString(currentKata, Username);
 
     for (Counter = 0; Counter < USERS.lengthEff; Counter++){
@@ -109,7 +109,7 @@ void Register(){
     }
 
     printf("Masukkan Password: \n");
-    startKata();
+    startKata(NULL);
     KataKeString(currentKata, Password);
 
     userBaru = createUser(Username, Password, Money);

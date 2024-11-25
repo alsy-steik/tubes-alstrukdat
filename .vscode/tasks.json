@@ -16,6 +16,7 @@
                 "${fileDirname}\\adt\\MesinKata\\*.c",
                 "${fileDirname}\\adt\\Queue\\*.c",
                 "${fileDirname}\\adt\\User\\*.c",
+                "${fileDirname}\\procedure\\*.c",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
