@@ -1,24 +1,4 @@
-#include "adt/MesinKata/MesinKata.h"
-#include "boolean.h"
-#include "adt/Queue/Queue.h"
-#include "adt/ArrayDin/ArrayDin.h"
-#include "adt/ArrayStat/ArrayStat.h"
-#include "adt/MesinKarakter/MesinKarakter.c"
-
-boolean START(ArrayStat* pengguna, ArrayDin* barang);
-void help(int menu);
-boolean Login();
-boolean Register();
-void Logout();
-void Work();
-void TebakAngka();
-void W0RDL3();
-void WorkChallenge();
-void store_list(ArrayDin arr);
-void store_remove(ArrayDin *arr);
-void StoreRequest(ArrayDin arr, Queue requestQueue);
-void StoreSupply(ArrayDin arr, Queue requestQueue);
-void Quit();
+#include "function.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -26,7 +6,7 @@ void Quit();
 #include <time.h>
 #include <string.h>
 
-    int main() {
+int main() {
 
     int pos = 0;
     puts("============SELAMAT DATANG DI PURRMART!============");
@@ -155,51 +135,6 @@ void Quit();
             help(3);
         } else {
             printf("%s : command not found", currentKata.buffer);
-        }
-    }
-}
-
-void WorkChallenge() {
-    puts("Daftar challenge yang tersedia:");
-    puts("1. Tebak angka (biaya main = 200)");
-    puts("2. WORDL399 (biaya main = 500)")
-    putchar('\n');
-    printf("Masukkan challenge yang hendak dimainkan: ");
-
-    int num = getNum();
-    
-    if(num == 1) { 
-        TebakAngka();
-    } else if(num == 2) {
-        W0RDL3();
-    }
-}
-
-void Quit() {
-    printf("Apakah kamu ingin menyimpan data sesi sekarang (Y/N)? ");
-    
-    while(true) {
-        start(NULL);
-        adv();
-        
-
-        if(cc == 'Y' || cc == 'y') { 
-            printf("Nama save file: ");
-            startKata(NULL);
-            while(endKata) {
-                puts("Please specify filename!");
-                printf("Nama save file: ");
-                startKata(NULL);
-            }
-
-            saveFile(currentKata.buffer);
-
-            cc = 'n';
-        }
-
-        else if(cc = 'N' || cc == 'n') {
-            puts("Kamu keluar dari PURRMART.");
-            puts("Dadah ^_^/");
         }
     }
 }

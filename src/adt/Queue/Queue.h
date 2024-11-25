@@ -11,13 +11,9 @@ typedef struct
 } Queue;
 
 void initQueue(Queue *q);
-
 boolean isEmpty(Queue q);
-
 void enqueue(Queue *q, const char *nama_barang);
-
 void dequeue(Queue *q);
-
 char *front(Queue q);
 
 #endif
