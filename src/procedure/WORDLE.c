@@ -30,7 +30,7 @@ void W0RDL3() {
     }
 
     
-    printf("\nWELCOME TO W0RDL3, YOU HAVE 5 CHANCES TO ANSWER BEFORE YOU LOSE!\n");
+    printf("\nWELCOME TO W0RDL3, YOU HAVE 6 CHANCES TO ANSWER BEFORE YOU LOSE!\n");
     
   
     // deklarasi matriks
