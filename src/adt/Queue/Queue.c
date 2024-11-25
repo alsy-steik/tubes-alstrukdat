@@ -1,12 +1,17 @@
 #include "Queue.h"
 #include "ArrayDin.h"
 #include "Barang.h"
+#include "../boolean.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 
 void initQueue(Queue* q) {
     MakeEmptyArrayDin(&(q->arr));
+}
+
+boolean isEmpty(Queue q) {
+    return !(q.arr.len);
 }
 
 void enqueue(Queue* q, const char* nama_barang) {
