@@ -28,9 +28,9 @@ void W0RDL3() {
     for (int i = 0; i < 6; i++) {
         answer[i] = words[randomIndex][i];
     }
-    printf("%s", answer);
+
     
-    printf("\nWELCOME TO W0RDL3, YOU HAVE 5 CHANCES TO ANSWER BEFORE YOU LOSE!\n");
+    printf("\nWELCOME TO W0RDL3, YOU HAVE 6 CHANCES TO ANSWER BEFORE YOU LOSE!\n");
     
   
     // deklarasi matriks
