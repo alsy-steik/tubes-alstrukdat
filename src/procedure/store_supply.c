@@ -21,7 +21,6 @@ void StoreSupply(ArrayDin arr, Queue* requestQueue){
         /*----------------------------------------------------DIVIDER-----------------------------------------------------------*/
 
         if (is_same_string(currentKata.buffer, "Terima")){
-            dequeue(requestQueue);
             int inputHarga = 0;
 
             while (inputHarga <= 0){
@@ -37,6 +36,7 @@ void StoreSupply(ArrayDin arr, Queue* requestQueue){
 
             Barang BarangBaru = createBarang(queue_front, inputHarga);
             ArrayDinInsertEnd(&arr, BarangBaru); 
+            dequeue(requestQueue);
         }
 
             /*------------------------------------------------------DIVIDER--------------------------------------------------------*/
