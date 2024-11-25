@@ -7,26 +7,6 @@
 #include "Barang.h"
 #include "MesinKata.h"
 
-int Uppercased_Char(int num){
-    if (num >= 'a' && num <= 'z'){
-        return (num - 32);
-    }
-
-    return num;
-}
-
-boolean is_same_string(const char str1[], const char str2[]){
-    int i = 0;
-        
-    while (str1[i] != '\0' && str2[i] != '\0'){
-        if (Uppercased_Char(str1[i]) != Uppercased_Char(str2[i])){
-            return false;
-        }
-        i++;
-    }
-    return (str1[i] == '\0' && str2[i] == '\0');
-}
-
 /*----------------------------------------------------DIVIDER-----------------------------------------------------------*/
 
 void StoreSupply(ArrayDin arr, Queue requestQueue){
