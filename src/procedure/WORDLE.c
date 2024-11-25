@@ -17,7 +17,7 @@ void W0RDL3() {
     
     int panjangkata = 5;
     int prize = 1500;
-    int chances = 5;
+    int chances = 6;
     
     char words[8][6] = {"TUGAS", "SUSAH", "TIDAK", "JELAS", "MABOK", "CUKUP", "LELAH", "KACAU"};
     char answer[6];
