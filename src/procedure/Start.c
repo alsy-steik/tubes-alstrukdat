@@ -3,4 +3,7 @@
 
 
 void START(){
+
+  printf("File konfigurasi aplikasi berhasil dibaca. PURRMART berhasil dijalankan.")
+  return;
 }
