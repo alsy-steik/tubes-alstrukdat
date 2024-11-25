@@ -28,8 +28,14 @@ User createUser(const char* name, const char* password, int money) {
     setName(&new_user, name);
     setPassword(&new_user, password);
     setMoney(&new_user, money);
-
     return new_user;
+}
+
+void addUser(ListUser *LUser, User u){
+    if ((*LUser).lengthEff < MAX_USERS){
+        (*LUser).ElUser[(*LUser).lengthEff] = u;
+        (*LUser).lengthEff++;
+    }
 }
 
 

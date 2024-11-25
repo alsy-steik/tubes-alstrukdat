@@ -4,7 +4,7 @@
 
 void store_list(ArrayDin arr)
 {
-    int N = getArrayDinLength(ArrayDin arr);
+    int N = getArrayDinLength(arr);
     printf("List barang yang ada di toko:\n");
     if (N > 0)
     {

@@ -1,12 +1,5 @@
 #include "MesinKata.h"
-#include "MesinKarakter.h"
-#include "ArrayDin.h"
-#include "ArrayStat.h"
-#include "Barang.h"
-#include "User.h"
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
+
 
 bool endKata;
 Kata currentKata;
@@ -25,6 +18,17 @@ void startKata(const char* path) {
     } else {
         endKata = false;
         salinKata();
+    }
+}
+
+void startKataMajemuk(const char* path) {
+    start(path);
+    ignoreBlank();
+    if(cc == MARK) {
+        endKata = true;
+    } else {
+        endKata = false;
+        salinKataMajemuk();
     }
 }
 
@@ -47,6 +51,36 @@ void salinKata() {
     }
 
     currentKata.length = i;
+}
+
+void salinKataMajemuk() {
+    int i = 0;
+    while((cc != MARK)) {
+        currentKata.buffer[i] = cc;
+        adv();
+        ++i;
+    }
+    currentKata.length = i;
+}
+
+int Uppercased_Char(int num){
+    if (num >= 'a' && num <= 'z'){
+        return (num - 32);
+    }
+
+    return num;
+}
+
+boolean is_same_string(const char str1[], const char str2[]){
+    int i = 0;
+        
+    while (str1[i] != '\0' && str2[i] != '\0'){
+        if (Uppercased_Char(str1[i]) != Uppercased_Char(str2[i])){
+            return false;
+        }
+        i++;
+    }
+    return (str1[i] == '\0' && str2[i] == '\0');
 }
 
 int getNum() {
@@ -73,6 +107,12 @@ void saveFile(const char *filename, ArrayStat *user, ArrayDin *barang)
     }
 
     fclose(fptr);
+}
+
+void PrintKata(Kata kata){
+    for (int i = 0; i<kata.length; i++){
+        printf("%c", kata.buffer[i]);
+    }
 }
 
 // int main() {

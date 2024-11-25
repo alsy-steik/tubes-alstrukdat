@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 void help() {
-    printf("Daftar Command PURRMART:\n");
+    printf("Welcome to PURRMART:\n");
     printf("1. START - Membaca file konfigurasi default untuk memulai PURRMART.\n");
     printf("2. LOAD <filename> - Membaca save file <filename> untuk memulai PURRMART.\n");
     printf("3. LOGIN - Masuk ke akun di sistem PURRMART.\n");

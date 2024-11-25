@@ -1,7 +1,7 @@
 #ifndef ARRAY_DIN_H
 #define ARRAY_DIN_H
 
-#include "Barang.h"
+#include "../Barang/Barang.h"
 #define INITIAL_ARRAY_DIN_SIZE 100
 
 typedef struct arraydin

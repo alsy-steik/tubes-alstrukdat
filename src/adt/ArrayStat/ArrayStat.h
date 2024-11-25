@@ -1,8 +1,8 @@
 #ifndef ARRAY_STAT_H
 #define ARRAY_STAT_H
 
-#include "Barang.h"
-#include "User.h"
+#include "../Barang/Barang.h"
+#include "../User/User.h"
 #include <stdio.h>
 
 #define MAX_ARRAY_STAT_SIZE 1000
