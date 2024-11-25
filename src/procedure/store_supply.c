@@ -29,7 +29,7 @@ boolean is_same_string(const char str1[], const char str2[]){
 
 /*----------------------------------------------------DIVIDER-----------------------------------------------------------*/
 
-void StoreSupply(ArrayDin arr){
+void StoreSupply(ArrayDin arr, Queue requestQueue){
     
     if (!isEmpty(requestQueue)){
         char* queue_front = front(requestQueue);
@@ -38,12 +38,9 @@ void StoreSupply(ArrayDin arr){
         
         startKata(NULL);
 
-        char input[currentKata.length+1];
-        strcpy(input, currentKata.buffer);
-
         /*----------------------------------------------------DIVIDER-----------------------------------------------------------*/
 
-        if (is_same_string(input, "Terima")){
+        if (is_same_string(currentKata.buffer, "Terima")){
             char* val = dequeue(&requestQueue);
             int inputHarga = 0;
 
@@ -58,23 +55,20 @@ void StoreSupply(ArrayDin arr){
 
             /*------------------------------------------------------DIVIDER--------------------------------------------------------*/
 
-            ArrayDinInsertEnd(arr, ); /*Cara Masukin Harga dan Nama Gimana Ya....*/
+            Barang BarangBaru = createBarang(val, inputHarga);
+            ArrayDinInsertEnd(&arr, BarangBaru); 
         }
 
             /*------------------------------------------------------DIVIDER--------------------------------------------------------*/
 
-        else if (is_same_string(input, "Tunda")){
+        else if (is_same_string(currentKata.buffer, "Tunda")){
             char* val = dequeue(&requestQueue);
             enqueue(&requestQueue, val);
             printf("%s dikembalikan ke antrean", val);
         }
 
-        else if (is_same_string(input, "Tolak")){
+        else if (is_same_string(currentKata.buffer, "Tolak")){
             char* val = dequeue(&requestQueue);
-        }
-
-        else{
-            return;
         }
     }
 }
