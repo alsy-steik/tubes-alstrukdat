@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "ArrayDin.h"
-#include "Barang.h"
+#include "../adt/ArrayDin/ArrayDin.h"
+#include "../adt/Barang/barang.h"
 
 void store_list(ArrayDin arr)
 {

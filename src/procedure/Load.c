@@ -2,12 +2,12 @@
 #include <stdlib.h>
 
 
-// void Load(const char* filename){
-//   FILE *file;
-//   char path[100];  
-//   int i = 0;
-//   int j = 0;
-//   const char *folder = "/save/";
+boolean Load(const char* filename){
+  FILE *file;
+  char path[100];  
+  int i = 0;
+  int j = 0;
+  const char *folder = "/save/";
 
   
 //   while (path[i] != '\0') {
@@ -20,15 +20,16 @@
 //   path[j] = '0';
 
  
-//   file = fopen(path, "r");
-//   if (file) {
-//     printf("Save file berhasil dibaca. PURRMART berhasil dijalankan.");
-//     fclose(file);
-//   } else {
-//     printf("Save file tidak ditemukan. PURRMART gagal dijalankan.");
-//   }  
-//   return;
-// }
+  file = fopen(path, "r");
+  if (file) {
+    fclose(file);
+    printf("Save file berhasil dibaca. PURRMART berhasil dijalankan.");
+    return 0;
+  } else {
+    printf("Save file tidak ditemukan. PURRMART gagal dijalankan.");
+  }  
+  return 1;
+}
 
 // int main () {
 //   return 0;
