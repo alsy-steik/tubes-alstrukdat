@@ -3,6 +3,7 @@
 #include "adt/Queue/Queue.h"
 #include "adt/ArrayDin/ArrayDin.h"
 #include "adt/ArrayStat/ArrayStat.h"
+#include "adt/MesinKarakter/MesinKarakter.c"
 
 boolean START(ArrayStat* pengguna, ArrayDin* barang);
 void help(int menu);
@@ -17,6 +18,7 @@ void store_list(ArrayDin arr);
 void store_remove(ArrayDin *arr);
 void StoreRequest(ArrayDin arr, Queue requestQueue);
 void StoreSupply(ArrayDin arr, Queue requestQueue);
+void Quit();
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -36,7 +38,13 @@ void StoreSupply(ArrayDin arr, Queue requestQueue);
     boolean valid = false;
 
     ArrayStat user;
+    createEmpty(&user);
+
     ArrayDin barang;
+    MakeEmptyArrayDin(&barang);
+
+    Queue request;
+    initQueue(&request);
 
     User session = NULL;
 
@@ -117,18 +125,38 @@ void StoreSupply(ArrayDin arr, Queue requestQueue);
                     store_list(barang);
                 }
                 if(is_same_string(currentKata.buffer, "REQUEST")) {
-                    StoreRequest(barang, )
+                    StoreRequest(barang, &request);
                 }
                 if(is_same_string(currentKata.buffer, "SUPPLY")) {
-
+                    StoreSupply(barang, request);
                 }
                 if(is_same_string(currentKata.buffer, "REMOVE")) {
-
+                    store_remove(&barang);
+                } else {
+                    printf("STORE %s : command not found", currentKata.buffer);
                 }
+            } else {
+                printf("%s : command not found", currentKata.buffer);
             }
         }
-    }
 
+        else if(is_same_string(currentKata.buffer, "LOGOUT")) {
+            Logout();
+        } else if(is_same_string(currentKata.buffer, "SAVE")) {
+            advKata();
+            if(!endKata) {
+                saveFile(currentKata.buffer, &user, &barang);
+            } else {
+                puts("Please specify filename.");
+            }
+        } else if(is_same_string(currentKata.buffer, "QUIT")) {
+            Quit();
+        } else if(is_same_string(currentKata.buffer, "HELP")){
+            help(3);
+        } else {
+            printf("%s : command not found", currentKata.buffer);
+        }
+    }
 }
 
 void WorkChallenge() {
@@ -144,5 +172,34 @@ void WorkChallenge() {
         TebakAngka();
     } else if(num == 2) {
         W0RDL3();
+    }
+}
+
+void Quit() {
+    printf("Apakah kamu ingin menyimpan data sesi sekarang (Y/N)? ");
+    
+    while(true) {
+        start(NULL);
+        adv();
+        
+
+        if(cc == 'Y' || cc == 'y') { 
+            printf("Nama save file: ");
+            startKata(NULL);
+            while(endKata) {
+                puts("Please specify filename!");
+                printf("Nama save file: ");
+                startKata(NULL);
+            }
+
+            saveFile(currentKata.buffer);
+
+            cc = 'n';
+        }
+
+        else if(cc = 'N' || cc == 'n') {
+            puts("Kamu keluar dari PURRMART.");
+            puts("Dadah ^_^/");
+        }
     }
 }
