@@ -28,8 +28,8 @@ void TebakAngka() {
     }
 }
 
-int main() {
+// int main() {
 
-    TebakAngka();
-    return 0;
-}
+//     TebakAngka();
+//     return 0;
+// }

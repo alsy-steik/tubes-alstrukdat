@@ -19,8 +19,8 @@ void remove_newline(char *str) {
 
 
 
-void START(ArrayStat* pengguna, ArrayDin* barang){
-  boolean result = Load("config/default.txt", pengguna, barang);
+boolean START(ArrayStat* pengguna, ArrayDin* barang){
+  return Load("config/default.txt", pengguna, barang);
   // FILE *file;
   // int N;
   // int M;
@@ -53,8 +53,7 @@ void START(ArrayStat* pengguna, ArrayDin* barang){
 
 
   // fclose (file);
-  printf("File konfigurasi aplikasi berhasil dibaca. PURRMART berhasil dijalankan.");
-  return;
+  // return;
 }
 
 

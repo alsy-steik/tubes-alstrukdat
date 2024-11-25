@@ -49,7 +49,7 @@ int UsernameAda(const char *Input){
 }
 
 // Function login
-void Login(){
+boolean Login(){
     char Username[MAX_USER_NAME];
     char Password[MAX_USER_PASS];
     int CurrentindeksUser;
@@ -80,16 +80,18 @@ void Login(){
 
     if (BandingString(Password, USERS.ElUser[CurrentindeksUser].password)){
         IndeksUser = CurrentindeksUser;
+        *session = USERS.ElUser[CurrentindeksUser];
         printf("Login Berhasil, Selamat datang kembali %s\n", Username);
+        return true;
     }
-    else {
-        printf("Password yang anda masukkan salah\n ");
-    }
+    
 
+    printf("Password yang anda masukkan salah\n ");
+    return false;
 }
 
 // Function register
-void Register(){
+boolean Register(){
     char Username[MAX_USER_NAME];
     char Password[MAX_USER_PASS];
     int Money = 1000;
@@ -104,7 +106,7 @@ void Register(){
     for (Counter = 0; Counter < USERS.lengthEff; Counter++){
         if (UsernameAda(Username) != -1){
             printf("Username sudah terdaftar, buat username lain\n ");
-            return;
+            return false;
         }
     }
 
@@ -115,5 +117,5 @@ void Register(){
     userBaru = createUser(Username, Password, Money);
     addUser(&USERS, userBaru);
     printf("Registrasi Selesai!\n");
-
+    return true;
 }

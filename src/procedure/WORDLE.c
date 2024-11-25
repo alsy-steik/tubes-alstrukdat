@@ -123,11 +123,11 @@ void W0RDL3() {
     printf("Boo! Anda kalah.");
 }
  
-int main() {
-    printf("Uang anda ");
-    printf("%d\n", money);
-    W0RDL3();
-    printf("\nUang anda ");
-    printf("%d\n", money);
-    return 0;
-}
+// int main() {
+//     printf("Uang anda ");
+//     printf("%d\n", money);
+//     W0RDL3();
+//     printf("\nUang anda ");
+//     printf("%d\n", money);
+//     return 0;
+// }
