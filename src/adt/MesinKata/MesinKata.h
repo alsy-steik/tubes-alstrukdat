@@ -31,8 +31,6 @@ void salinKata();
 void salinKataMajemuk();
 int Uppercased_Char(int num);
 boolean is_same_string (const char str1[], const char str2[]);
-boolean BandingString(Kata kata, char *s);
-boolean BandingKata(Kata input1, Kata input2);
 int getNum();
 void saveFile(const char *filename, ArrayStat *user, ArrayDin *barang);
 void PrintKata(Kata kata);

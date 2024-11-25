@@ -12,7 +12,7 @@ void store_remove(ArrayDin *arr) {
     int found = -1; // Indeks barang dalam array
     for (int i = 0; i < getArrayDinLength(*arr); i++) {
         Barang currentBarang = getArrayDinElmt(*arr, i);
-        if (BandingString(currentKata, currentBarang.name)) {
+        if (is_same_string(currentKata.buffer, currentBarang.name)) {
             found = i;
             break;
         }

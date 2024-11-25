@@ -85,36 +85,6 @@ boolean is_same_string(const char str1[], const char str2[]){
     return (str1[i] == '\0' && str2[i] == '\0');
 }
 
-boolean BandingString(Kata kata, char *s){
-    boolean found = true;
-    int i = 0;
-    while (i<kata.length && found){
-        if (kata.buffer[i]!=s[i]){
-            found = false;
-        }
-        else {
-            i++;
-        }
-    } return found;
-}
-
-boolean BandingKata(Kata input1, Kata input2){
-    if (input1.length != input2.length){
-        return false;
-    } else {
-        boolean found = true;
-        int i = 0;
-        while (i<input1.length && found){
-            if (input1.buffer[i]!=input2.buffer[i]){
-                found = false;
-            }
-            else {
-                i++;
-            }
-        } return found;
-    }
-}
-
 int getNum() {
     startKata(NULL);
     return atoi(currentKata.buffer);
