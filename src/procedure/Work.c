@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "MesinKata.h"
-#include "MesinKarakter.h"
-#include "boolean.h"
+#include "../adt/MesinKarakter/MesinKarakter.h"
+#include "../adt/MesinKata/MesinKata.h"
+#include "../../boolean.h"
 
 // https://www.tutorialspoint.com/c_standard_library/time_h.htm
 // MAKRO time.h
@@ -33,21 +33,21 @@ void DaftarWork(){
 void Work(){
     char InputBuffer[100];
 
-    TampilkanDaftarPekerjaan();
+    DaftarWork();
     printf("Masukkan pekerjaan yang dipilih: ");
-    startKataMajemuk(InputBuffer);
+    startKataMajemuk(NULL);
     salinKataMajemuk();
     
     printf("\n");
     // is_same_string(InputBuffer, "Inator Connoisseur");
     // misal program selesai pake "Selesai"
-    while (!is_same_string(currentKata.buffer, "Selesai");){
+    while (!is_same_string(currentKata.buffer, "Selesai")){
         if (is_same_string(currentKata.buffer, "Evil Lab Assistant")){
             printf("Anda bekerja sebagai Evil Lab Assistant, Menunggu gaji turun :3...\n");
             Jeda(14);
             printf("Horee gaji sudah turun! 100 Rupiah sudah ditambahkan ke akun anda :D\n");
         }
-        else if (is_same_string(currentKata.buffer, "OWCA Hiring Manager");){
+        else if (is_same_string(currentKata.buffer, "OWCA Hiring Manager")){
             printf("Anda bekerja sebagai OWCA Hiring Manager, Menunggu gaji turun :3...\n");
             Jeda(21);
             printf("Horee gaji sudah turun! 4200 Rupiah sudah ditambahkan ke akun anda :D\n");
@@ -70,9 +70,9 @@ void Work(){
         else {
             printf("Tolong input sesuai yang ada di daftar, gausah ngadi-ngadi soalnya emang itu doang :(\n");
         }
-        TampilkanDaftarPekerjaan();
+        DaftarWork();
         printf("Masukkan pekerjaan yang dipilih: ");
-        startKataMajemuk(InputBuffer);
+        startKataMajemuk(NULL);
         salinKataMajemuk();   
         printf("\n");
     }

@@ -10,36 +10,22 @@
 /*----------------------------------------------------DIVIDER-----------------------------------------------------------*/
 
 
-void StoreRequest(ArrayDin arr, Queue requestQueue){
+void StoreRequest(ArrayDin arr, Queue* requestQueue){
     printf("Masukkan nama item:\n");
-
+    
     startKataMajemuk(NULL);
+    /*Menerima input user terkait nama barang mau dimasukan*/
     /*----------------------------------------------------DIVIDER-----------------------------------------------------------*/
-    int Mark_Antrean = 0;
-    if (isEmpty(requestQueue)){
-        enqueue(&requestQueue, currentKata.buffer);
+    boolean Mark_Antrean;
+    if (isEmpty(*requestQueue)){
+        enqueue(requestQueue, currentKata.buffer);
     }
+    /*Bila antrean kosong akan langsung dimasukan*/
 
     /*----------------------------------------------------DIVIDER-----------------------------------------------------------*/
     
     else{
-        Queue temp;
-        initQueue(&temp);
-        char* val;
-
-        
-        while (!isEmpty(requestQueue)){
-            val = dequeue(&requestQueue);
-            enqueue(&temp, val);
-        }
-
-        while (!isEmpty(temp)){
-            val = dequeue(&temp);
-            if (is_same_string(currentKata.buffer, val)){
-                Mark_Antrean++;
-            }
-            enqueue(&requestQueue, val);
-        }
+        Mark_Antrean = contains(*requestQueue, currentKata.buffer);
     }
         
     /*Mengecek apakah nama tersebut ada pada queue*/
@@ -55,11 +41,8 @@ void StoreRequest(ArrayDin arr, Queue requestQueue){
                 if (is_same_string(currentKata.buffer, storelist.name)){
                     Mark_Supply++;
                 }
-            }
-        /*Meskipun hanya memakai item_name, tetap perlu diambil harga_item untuk memisahkannya*/  
+            }  
     }
-    
-
     /*Mengecek apakah nama tersebut ada pada store*/
 
     /*----------------------------------------------------DIVIDER-----------------------------------------------------------*/
@@ -69,21 +52,12 @@ void StoreRequest(ArrayDin arr, Queue requestQueue){
         printf("Barang dengan nama yang sama sudah ada di toko!\n");
     }
 
-    else if (Mark_Antrean != 0){
-        printf("Barang dengan nama yang sama sudah ada di antrean!\n");
-    }
+    else if (Mark_Antrean == true){
+            printf("Barang dengan nama yang sama sudah ada di antrean!\n");
+    }  
 
     else{
-        enqueue(&requestQueue, currentKata.buffer);
+        enqueue(requestQueue, currentKata.buffer);
         printf("Barang berhasil ditambahkan di antrean\n");
     }
-
-    for (int z = 0; z < currentKata.length; z++){
-        currentKata.buffer[z] = '\0';
-    }
-    currentKata.length = 0;
-
-    printf("Masukkan nama item:\n");
-
-    startKataMajemuk(NULL);
 }

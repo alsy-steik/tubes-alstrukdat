@@ -81,7 +81,8 @@ boolean is_same_string(const char str1[], const char str2[]){
         }
         i++;
     }
-    return (str1[i] == '\0' && str2[i] == '\0');
+    // return (str1[i] == '\0' && str2[i] == '\0');
+    return (true);
 }
 
 int getNum() {
