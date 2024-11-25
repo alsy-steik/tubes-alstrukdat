@@ -50,6 +50,7 @@ void salinKata() {
         ++i;
     }
 
+    currentKata.buffer[i] = '\0';
     currentKata.length = i;
 }
 
@@ -110,6 +111,26 @@ void saveFile(const char *filename, ArrayStat *user, ArrayDin *barang)
     fclose(fptr);
 }
 
+boolean Load(const char *filename, ArrayStat *user, ArrayDin *barang)
+{
+    FILE *file;
+    
+
+    file = fopen(filename, "r");
+    if (file)
+    {
+        printf("Save file berhasil dibaca. PURRMART berhasil dijalankan.");
+
+        /**
+         * TODO: Load data into `user` and `barang`
+         */
+        fclose(file);
+        return true;
+    }
+    
+    return false;
+}
+
 void PrintKata(Kata kata){
     for (int i = 0; i<kata.length; i++){
         printf("%c", kata.buffer[i]);
@@ -118,14 +139,14 @@ void PrintKata(Kata kata){
 
 // int main() {
 //     startKata(NULL);
-//     while(!endKata) {
-//         for (int i = 0; i < currentKata.length; i++)
-//         {
-//             // puts("a");
-//             printf("%c", currentKata.buffer[i]);
-//             // puts("a");
-//         }
-//         printf("\n");
-//         advKata();
-//     }
+    // while(!endKata) {
+    //     for (int i = 0; i < currentKata.length; i++)
+    //     {
+    //         // puts("a");
+    //         printf("%c", currentKata.buffer[i]);
+    //         // puts("a");
+    //     }
+    //     printf("\n");
+    //     advKata();
+    // }
 // }

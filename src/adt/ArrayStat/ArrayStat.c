@@ -1,6 +1,6 @@
 #include "ArrayStat.h"
-#include "Barang.h"
-#include "User.h"
+#include "../Barang/Barang.h"
+#include "../User/User.h"
 #include <stdio.h>
 
 void createEmpty(ArrayStat* arr) {
