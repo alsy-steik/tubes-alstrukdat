@@ -2,7 +2,7 @@ void WorkChallenge()
 {
     puts("Daftar challenge yang tersedia:");
     puts("1. Tebak angka (biaya main = 200)");
-    puts("2. WORDL399 (biaya main = 500)")
+    puts("2. WORDL399 (biaya main = 500)");
         putchar('\n');
     printf("Masukkan challenge yang hendak dimainkan: ");
 

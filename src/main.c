@@ -26,14 +26,12 @@ int main() {
     Queue request;
     initQueue(&request);
 
-    User session = NULL;
-
     while (!valid)
     {
         printf(">> ");
         startKata(NULL);
         if(is_same_string(currentKata.buffer, "START")) {
-            valid = START(user, barang);
+            valid = START(&user, &barang);
             if(valid) {
                 puts("File konfigurasi aplikasi berhasil dibaca. PURRMART berhasil dijalankan.");
             } else
@@ -68,7 +66,7 @@ int main() {
             valid = Login();
         } else if(is_same_string(currentKata.buffer, "REGISTER")) {
             valid = Register();
-        } else if{
+        } else if (is_same_string(currentKata.buffer, "HELP")) {
             help(pos);
         } else {
             printf("%s : command not found");
@@ -130,7 +128,7 @@ int main() {
                 puts("Please specify filename.");
             }
         } else if(is_same_string(currentKata.buffer, "QUIT")) {
-            Quit();
+            Quit(&user, &barang);
         } else if(is_same_string(currentKata.buffer, "HELP")){
             help(3);
         } else {

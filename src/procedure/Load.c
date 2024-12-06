@@ -1,6 +1,6 @@
+#include "../boolean.h"
 #include <stdio.h>
 #include <stdlib.h>
-
 
 boolean Load(const char* filename){
   FILE *file;

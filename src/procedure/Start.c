@@ -1,7 +1,7 @@
 #include "../adt/ArrayDin/ArrayDin.h"
 #include "../adt/ArrayStat/ArrayStat.h"
 #include "../adt/MesinKata/MesinKata.h"
-#include "boolean.h"
+#include "../boolean.h"
 
 #include <stdio.h>
 #include <stdlib.h>

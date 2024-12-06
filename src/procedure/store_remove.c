@@ -3,7 +3,7 @@
 #include "../adt/MesinKarakter/MesinKarakter.h"
 #include "../adt/ArrayDin/ArrayDin.h"
 #include "../adt/Barang/barang.h"
-#include "../../boolean.h"
+#include "../boolean.h"
 
 void store_remove(ArrayDin *arr) {
     printf("Nama barang yang akan dihapus: ");

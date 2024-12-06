@@ -80,7 +80,6 @@ boolean Login(){
 
     if (BandingString(Password, USERS.ElUser[CurrentindeksUser].password)){
         IndeksUser = CurrentindeksUser;
-        *session = USERS.ElUser[CurrentindeksUser];
         printf("Login Berhasil, Selamat datang kembali %s\n", Username);
         return true;
     }

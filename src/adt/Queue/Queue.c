@@ -39,18 +39,18 @@ char* front(Queue q) {
     return q.arr.arr[0].name;
 }
 
-int main() {
-    // puts("hai");
-    Queue q;
-    initQueue(&q);
+// int main() {
+//     // puts("hai");
+//     Queue q;
+//     initQueue(&q);
 
-    enqueue(&q, "aj");
-    enqueue(&q, "as");
-    enqueue(&q, "ad");
-    printf("%d\n", contains(q, "acd"));
+//     enqueue(&q, "aj");
+//     enqueue(&q, "as");
+//     enqueue(&q, "ad");
+//     printf("%d\n", contains(q, "acd"));
    
-   return 0;
-}
+//    return 0;
+// }
 
 
 

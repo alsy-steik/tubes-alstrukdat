@@ -16,6 +16,6 @@ void W0RDL3();
 void WorkChallenge();
 void store_list(ArrayDin arr);
 void store_remove(ArrayDin *arr);
-void StoreRequest(ArrayDin arr, Queue requestQueue);
+void StoreRequest(ArrayDin arr, Queue* requestQueue);
 void StoreSupply(ArrayDin arr, Queue requestQueue);
 void Quit();

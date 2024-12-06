@@ -3,7 +3,7 @@
 #include <time.h>
 #include "../adt/MesinKarakter/MesinKarakter.h"
 #include "../adt/MesinKata/MesinKata.h"
-#include "../../boolean.h"
+#include "../boolean.h"
 
 // https://www.tutorialspoint.com/c_standard_library/time_h.htm
 // MAKRO time.h

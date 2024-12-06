@@ -1,4 +1,8 @@
-void Quit()
+#include "../boolean.h"
+#include "../adt/MesinKarakter/MesinKarakter.h"
+#include "../adt/MesinKata/MesinKata.h"
+
+void Quit(ArrayStat* user, ArrayDin* barang)
 {
     printf("Apakah kamu ingin menyimpan data sesi sekarang (Y/N)? ");
     while (true)
@@ -17,7 +21,7 @@ void Quit()
                 startKata(NULL);
             }
 
-            saveFile(currentKata.buffer);
+            saveFile(currentKata.buffer, user, barang);
 
             cc = 'n';
         }

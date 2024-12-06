@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../boolean.h"
+#include "../boolean.h"
 #include "../adt/Queue/Queue.h"
 #include "../adt/ArrayDin/ArrayDin.h"
 #include "../adt/Barang/barang.h"
