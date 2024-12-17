@@ -84,7 +84,7 @@ void Login(){
 }
 
 // Function register
-boolean Register(){
+void Register(){
     char Username[MAX_USER_NAME];
     char Password[MAX_USER_PASS];
     int Money = 1000;
