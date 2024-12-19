@@ -1,3 +1,6 @@
+#ifndef DOUBLY_LINKED_LIST_H
+#define DOUBLY_LINKED_LIST_H
+
 #define MAX_BARANG_LEN 100
 typedef struct doublylinkedlist
 {
@@ -14,3 +17,5 @@ void LinkedListDeleteElem(DoublyLinkedListNode **head, int pos);
 void LinkedListDeleteBeginning(DoublyLinkedListNode **head);
 void LinkedListDeleteEnd(DoublyLinkedListNode **head);
 void printDoublyLinkedListNode(DoublyLinkedListNode *head);
+
+#endif

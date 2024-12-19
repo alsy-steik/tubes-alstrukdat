@@ -1,14 +1,20 @@
 #include "stack.h"
+#include "../../util/util.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-ElType isEmpty(Stack* st) {
+int isEmpty(Stack* st) {
     return st == NULL;
 }
 
-void push(Stack** stack, ElType elem) {
+void push(Stack** stack, ElType el) {
+    pushNT(stack, el.nama_barang, el.harga_total);
+}
+
+void pushNT(Stack** stack, const char* nama_barang, int total_harga) {
     Stack* new_node = (Stack* ) malloc(sizeof(Stack));
-    new_node->data = elem;
+    (new_node->data).harga_total = total_harga;
+    strcpyHomemade((new_node->data).nama_barang, nama_barang);
     new_node->link = *stack;
     *stack = new_node;
 }
@@ -23,7 +29,9 @@ void pop(Stack** stack) {
 ElType top(Stack* stack) {
     if(isEmpty(stack)) {
         printf("ga ada nbri");
-        return -1;
+        StackElement st;
+        st.harga_total = -1;
+        return st;
     }
 
     return stack->data;
