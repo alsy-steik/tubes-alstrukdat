@@ -1,12 +1,16 @@
+#define MAX_BARANG_LEN 100
 typedef struct doublylinkedlist
 {
-    int data;
-    struct node *prev;
-    struct node *next;
+    char data[MAX_BARANG_LEN];
+    struct doublylinkedlist *prev;
+    struct doublylinkedlist *next;
 } DoublyLinkedListNode;
 
-
-void insertBeginning(DoublyLinkedListNode **head, int elem);
-void insertEnd(DoublyLinkedListNode **head, int elem);
-void printNode(DoublyLinkedListNode *head);
-void printReverse(DoublyLinkedListNode *head);
+void copyStr(char *dest, const char *source);
+void LinkedListInsertBeginning(DoublyLinkedListNode **head, const char *elem);
+void LinkedListInsertElem(DoublyLinkedListNode **head, const char *elem, int pos);
+void LinkedListInsertEnd(DoublyLinkedListNode **head, const char *elem);
+void LinkedListDeleteElem(DoublyLinkedListNode **head, int pos);
+void LinkedListDeleteBeginning(DoublyLinkedListNode **head);
+void LinkedListDeleteEnd(DoublyLinkedListNode **head);
+void printDoublyLinkedListNode(DoublyLinkedListNode *head);
