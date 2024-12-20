@@ -1,6 +1,10 @@
 #ifndef USER_H
 #define USER_H
 
+#include "../SetMap/setmap.h"
+#include "../Stack/stack.h"
+#include "../LinkedList/doublyLinkedList.h"
+
 #define MAX_USER_NAME 128
 #define MAX_USER_PASS 255
 #define MAX_USERS 150
@@ -10,6 +14,9 @@ typedef struct user
     char name[MAX_USER_NAME];
     char password[255];
     int money;
+    Map keranjang;
+    Stack riwayat_pembelian;
+    DoublyLinkedListNode wishlist;
 } User;
 
 typedef struct {
