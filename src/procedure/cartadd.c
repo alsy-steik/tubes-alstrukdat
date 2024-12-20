@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "setmap.h"
 #include "MesinKata.h"
-#include "util.h"
 
 const char *barangToko[] = {"AK47", "Pistol", "Peluru", "Granat"};
 const int jumlahBarangToko = 4;
