@@ -120,4 +120,4 @@ void Wishlist_swap(DoublyLinkedListNode** head, int a, int b){
 // }
 
 
-// gcc -o wishlist_swap_new wishlist_swap_new.c doublyLinkedList.c
+// gcc -o wishlist_swap wishlist_swap.c doublyLinkedList.c
