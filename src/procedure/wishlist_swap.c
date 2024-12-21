@@ -36,7 +36,7 @@ void Wishlist_swap(DoublyLinkedListNode** head, int a, int b){
     if (a == b){
         printf("Tidak perlu ditukar, index-%d dan index-%d sudah sama", a, b);
     }
-    else if (a > count && b > count && a <= 0 && b <= 0){
+    else if (a > count || b > count || a <= 0 || b <= 0){
         printf("Tidak bisa ditukar, index yang diberikan tidak valid [1 - %d]", count);
     }
     
