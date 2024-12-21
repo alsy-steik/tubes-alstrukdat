@@ -6,7 +6,11 @@
 void Wishlist_clear(DoublyLinkedListNode **head){
     *head = NULL;
     /*Membuat linked list menjadi list baru yang empty*/
+    if(*head == NULL){
+        printf("Wishlist kamu berhasil dihapus!\n");
+    }
 }
+
 
 // int main() {
 //     DoublyLinkedListNode* wishlist = NULL;
@@ -23,6 +27,7 @@ void Wishlist_clear(DoublyLinkedListNode **head){
 
 //     Wishlist_clear(&wishlist);
 
+//     printf("\nCurrent wishlist:\n");
 //     printDoublyLinkedListNode(wishlist);
 
 //     return 0;
