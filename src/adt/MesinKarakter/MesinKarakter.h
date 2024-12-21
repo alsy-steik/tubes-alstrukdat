@@ -10,4 +10,5 @@ extern char eop;
 
 boolean start();
 void adv();
+void close();
 #endif

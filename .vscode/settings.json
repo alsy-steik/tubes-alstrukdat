@@ -4,7 +4,11 @@
     "user.h": "c",
     "barang.h": "c",
     "mesinkata.h": "c",
-    "arraydin.h": "c"
+    "arraydin.h": "c",
+    "algorithm": "cpp",
+    "xlocnum": "cpp",
+    "xstring": "cpp",
+    "mesinkarakter.h": "c"
   },
   "C_Cpp_Runner.msvcBatchPath": "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Auxiliary/Build/vcvarsall.bat",
   "C_Cpp_Runner.cCompilerPath": "gcc",

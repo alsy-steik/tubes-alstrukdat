@@ -19,8 +19,6 @@ boolean start(const char* path) {
     return pita != NULL;
 }
 
-
-
 void adv() {
     // puts("asbhab");
     cc = getc(pita);
@@ -33,3 +31,6 @@ void adv() {
     }
 }
 
+void close() {
+    if(pita != stdin) fclose(pita);
+}

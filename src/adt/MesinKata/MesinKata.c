@@ -242,7 +242,7 @@ boolean Load(const char *filename, ArrayStat *user, ArrayDin *barang)
     loadUsers(user);
     // printf("User loaded successfully:D\n");
     // printf("completed.\n");
-    
+    close();
     return true;
 }
 
