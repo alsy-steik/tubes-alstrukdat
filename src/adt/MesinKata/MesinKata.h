@@ -2,7 +2,6 @@
 #define MESIN_KATA_H
 
 #include "../MesinKarakter/MesinKarakter.h"
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "../../boolean.h"
@@ -20,7 +19,7 @@ typedef struct {
     int length;
 } Kata;
 
-extern bool endKata;
+extern boolean endKata;
 extern Kata currentKata;
 
 void ignoreBlank();
@@ -32,7 +31,7 @@ void salinKataMajemuk();
 int Uppercased_Char(int num);
 boolean is_same_string (const char str1[], const char str2[]);
 int getNum();
-void saveFile(const char *filename, ArrayStat *user, ArrayDin *barang);
+boolean saveFile(const char *filename, ArrayStat *user, ArrayDin *barang);
 void PrintKata(Kata kata);
 boolean Load(const char *filename, ArrayStat* user, ArrayDin *barang);
 

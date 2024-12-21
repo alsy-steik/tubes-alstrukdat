@@ -1,11 +1,12 @@
 #include "MesinKata.h"
 
 
-bool endKata;
+boolean endKata;
 Kata currentKata;
 
 void ignoreBlank() {
     while(cc == BLANK) {
+        // puts("bjirnigga");
         adv();
     }
 }
@@ -24,7 +25,7 @@ void startKata(const char* path) {
 void startKataMajemuk(const char* path) {
     start(path);
     ignoreBlank();
-    if(cc == MARK) {
+    if(cc == EOF) {
         endKata = true;
     } else {
         endKata = false;
@@ -44,11 +45,14 @@ void advKata() {
 
 void salinKata() {
     int i = 0;
-    while((cc != MARK) && (cc != BLANK)) {
+    while((cc != EOL) && (cc != BLANK)) {
         currentKata.buffer[i] = cc;
         adv();
         ++i;
     }
+
+    // reset the current character, so we could read from the next line
+    if(cc == EOL) cc = BLANK;
 
     currentKata.buffer[i] = '\0';
     currentKata.length = i;
@@ -90,8 +94,14 @@ int getNum() {
     return atoi(currentKata.buffer);
 }
 
-void saveFile(const char *filename, ArrayStat *user, ArrayDin *barang)
+boolean saveFile(const char *filename, ArrayStat *user, ArrayDin *barang)
 {
+    int i = 0;
+    while(filename[i] != '\0') {
+        if (filename[i] == '\\' || filename[i] == '/') return false;
+        ++i;
+    }
+
     FILE *fptr = fopen(filename, "w");
 
     fprintf(fptr, "%d\n", barang->len);
@@ -109,6 +119,7 @@ void saveFile(const char *filename, ArrayStat *user, ArrayDin *barang)
     }
 
     fclose(fptr);
+    return true;
 }
 
 boolean Load(const char *filename, ArrayStat *user, ArrayDin *barang)
@@ -133,12 +144,29 @@ boolean Load(const char *filename, ArrayStat *user, ArrayDin *barang)
 
 void PrintKata(Kata kata){
     for (int i = 0; i<kata.length; i++){
-        printf("%c", kata.buffer[i]);
+        printf("%s\n", kata.buffer[i]);
     }
 }
 
-// int main() {
-//     startKata(NULL);
+int main() {
+
+    ArrayDin barang;
+    MakeEmptyArrayDin(&barang);
+
+    startKata("sample.txt");
+    int n = atoi(currentKata.buffer);
+
+    printf("%d\n", n);
+    while(n--) {
+        advKata();
+        int quantity = atoi(currentKata.buffer);
+        advKata();
+        printf("%d %s\n", quantity, currentKata.buffer);
+    }
+
+    advKata();
+    atoi(currentKata)
+    // startKata(NULL);
     // while(!endKata) {
     //     for (int i = 0; i < currentKata.length; i++)
     //     {
@@ -149,4 +177,4 @@ void PrintKata(Kata kata){
     //     printf("\n");
     //     advKata();
     // }
-// }
+}

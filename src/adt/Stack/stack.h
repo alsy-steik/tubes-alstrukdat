@@ -6,15 +6,15 @@ typedef struct {
     int harga_total;
 } StackElement;
 
-typedef StackElement ElType;
+typedef StackElement StackElType;
 typedef struct stack
 {
-    ElType data;
+    StackElType data;
     struct stack *link;
 } Stack;
 
 int isEmpty(Stack *st);
-void push(Stack **stack, ElType el);
+void push(Stack **stack, StackElType el);
 void pushNT(Stack **stack, const char *nama_barang, int total_harga);
 void pop(Stack **stack);
 ElType top(Stack *stack);

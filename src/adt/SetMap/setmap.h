@@ -1,7 +1,7 @@
 #ifndef SETMAP_H
 #define SETMAP_H
 
-#define MAX_SIZE 300
+#define MAX_SIZE 100
 
 typedef struct
 {

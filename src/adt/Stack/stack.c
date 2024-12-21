@@ -7,7 +7,7 @@ int isEmpty(Stack* st) {
     return st == NULL;
 }
 
-void push(Stack** stack, ElType el) {
+void push(Stack** stack, StackElType el) {
     pushNT(stack, el.nama_barang, el.harga_total);
 }
 
@@ -26,7 +26,7 @@ void pop(Stack** stack) {
     free(temp_head);
 }
 
-ElType top(Stack* stack) {
+StackElType top(Stack* stack) {
     if(isEmpty(stack)) {
         printf("ga ada nbri");
         StackElement st;

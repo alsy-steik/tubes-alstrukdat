@@ -5,7 +5,7 @@
 #include "../User/User.h"
 #include <stdio.h>
 
-#define MAX_ARRAY_STAT_SIZE 1000
+#define MAX_ARRAY_STAT_SIZE 20
 
 typedef struct arraystat
 {
