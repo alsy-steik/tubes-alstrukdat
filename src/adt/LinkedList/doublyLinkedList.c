@@ -118,11 +118,21 @@ void LinkedListDeleteEnd(DoublyLinkedListNode** head) {
 }
 
 void printDoublyLinkedListNode(DoublyLinkedListNode* head) {
-    while(head != NULL) {
-        printf("%s \n", head->data);
-        head = head->next;
+    if (head != NULL){
+        int i = 1;
+        while(head != NULL) {
+            printf("%d. %s\n", i, head->data);
+            head = head->next;
+            i++;
+            /*Loop dari awal list hingga akhir dan print tiap elmt*/
+        }
+        /*Wishlist tidak kosong*/
     }
 
+    else{
+        printf("Wishlist kamu kosong!\n");
+        /*Bila wishlist masih kosong*/
+    }
     putchar('\n');
 }
 
