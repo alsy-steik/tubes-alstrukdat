@@ -61,7 +61,7 @@ void Wishlist_remove_i(DoublyLinkedListNode** head, int i){
         }
     }
     else{
-        printf("Penghapusan barang WISHLIST gagal dilakukan, Barang ke-%d tidak ada di WISHLIST!", i);
+        printf("Penghapusan barang WISHLIST gagal dilakukan, Barang ke-%d tidak ada di WISHLIST!", i+1);
     }
 }
 
