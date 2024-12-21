@@ -1,44 +1,46 @@
 #include <stdio.h>
-#include "setmap.h"
-#include "MesinKata.h"
+#include <string.h>
+#include "../util/util.h"
+#include "../adt/SetMap/setmap.h"
+#include "../adt/MesinKata/MesinKata.h"
+#include "../adt/Barang/barang.h"
 
-void cartShow(Map *keranjang) {
-    // cek keranjang kosong
-    if (MapSize(*keranjang) == 0) {
-        printf("Keranjang kamu kosong!\n");
-        return;
+void cartShow(Map *cart, Map store) {
+    printf("Masukkan perintah: ");
+    startKataMajemuk(NULL); 
+
+    if (is_same_string(currentKata.buffer, "CART")) {
+        advKata();
+        if (is_same_string(currentKata.buffer, "SHOW")) {
+            advKata(); 
+
+            if (MapSize(*cart) == 0) {
+                printf("Keranjang kamu kosong!\n");
+            } else {
+                printf("Berikut adalah isi keranjangmu.\n");
+                printf("Kuantitas  Nama    Total\n");
+
+                int total_biaya = 0;
+
+                // print isi keranjang
+                for (int i = 0; i < MapSize(*cart); i++) {
+                    char nama_barang[100];
+                    int quantity;
+                    MapGet(*cart, i, nama_barang, &quantity);
+
+                    int harga_barang = MapGetValue(store, nama_barang);
+                    int total = quantity * harga_barang;
+
+                    total_biaya += total;
+                    printf("%d          %s    %d\n", quantity, nama_barang, total);
+                }
+
+                printf("Total biaya yang harus dikeluarkan adalah %d.\n", total_biaya);
+            }
+        } else {
+            printf("Perintah invalid; kembali ke menu utama.\n");
+        }
+    } else {
+        printf("Perintah invalid; kembali ke menu utama.\n");
     }
-
-    printf("Berikut adalah isi keranjangmu.\n");
-    printf("Kuantitas  Nama    Total\n");
-
-    int totalBiaya = 0;
-    MapIterator it = MapBegin(*keranjang);
-    while (it != MapEnd(*keranjang)) {
-        const char *namaBarang = it->key;
-        int kuantitas = it->value;
-        int hargaBarang = getHargaBarang(namaBarang); 
-        int total = hargaBarang * kuantitas;
-        totalBiaya += total;
-
-        printf("%-10d %-7s %d\n", kuantitas, namaBarang, total);
-
-        ++it;
-    }
-
-    printf("Total biaya yang harus dikeluarkan adalah %d.\n", totalBiaya);
-    printf("// Command mati; Kembali ke menu utama\n");
-}
-
-int main() {
-    Map keranjang;
-    MapCreateEmpty(&keranjang);
-
-    MapInsert(&keranjang, "AK47", 2);
-    MapInsert(&keranjang, "Lalabu", 1);
-
-    printf("Masukkan perintah (contoh: CART SHOW):\n");
-    cartShow(&keranjang);
-
-    return 0;
 }

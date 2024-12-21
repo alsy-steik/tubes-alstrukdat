@@ -1,51 +1,36 @@
 #include <stdio.h>
-#include "setmap.h"
-#include "MesinKata.h"
+#include <string.h>
+#include "../util/util.h"
+#include "../adt/SetMap/setmap.h"
+#include "../adt/MesinKata/MesinKata.h"
+#include "../adt/Barang/barang.h"
 
-const char *barangToko[] = {"AK47", "Pistol", "Peluru", "Granat"};
-const int jumlahBarangToko = 4;
+void cartAdd(Map *cart, Map store) {
+    printf("Masukkan perintah: ");
+    startKataMajemuk(NULL); 
 
-int barangAda(const char *namaBarang) {
-    for (int i = 0; i < jumlahBarangToko; ++i) {
-        if (isStringEqual(barangToko[i], namaBarang)) {
-            return 1;
-        }
-    }
-    return 0;
-}
+    if (is_same_string(currentKata.buffer, "CART")) {
+        advKata();
+        if (is_same_string(currentKata.buffer, "ADD")) {
+            advKata(); 
 
-void cartAdd(Map *keranjang) {
-    startKata(NULL); // membaca kata pertama ("CART")
-    advKata();       // kata kedua ("ADD")
-    advKata();       // nama barang
-    char namaBarang[100];
-    strcpyHomemade(namaBarang, currentKata.buffer);
+            char nama_barang[100];
+            strcpyHomemade(nama_barang, currentKata.buffer);
 
-    advKata(); // jumlah barang
-    int jumlahBarang = atoi(currentKata.buffer);
+            advKata(); 
 
-    if (barangAda(namaBarang)) {
-        if (MapContains(*keranjang, namaBarang)) {
-            // tambah jumlah barang jika sudah ada
-            int jumlahSekarang = MapGetEl(*keranjang, namaBarang);
-            MapInsert(keranjang, namaBarang, jumlahSekarang + jumlahBarang);
+            int quantity = getNum(); 
+
+            if (MapContains(store, nama_barang)) {
+                MapInsert(cart, nama_barang, quantity);
+                printf("Berhasil menambahkan %d %s ke keranjang belanja!\n", quantity, nama_barang);
+            } else {
+                printf("Barang tidak ada di toko!\n");
+            }
         } else {
-            // input barang baru ke keranjang
-            MapInsert(keranjang, namaBarang, jumlahBarang);
+            printf("Perintah invalid; kembali ke menu utama.\n");
         }
-        printf("Berhasil menambahkan %d %s ke keranjang belanja!\n", jumlahBarang, namaBarang);
     } else {
-        printf("Barang tidak ada di toko!\n");
+        printf("Perintah invalid; kembali ke menu utama.\n");
     }
-    printf("// Kembali ke menu utama\n");
-}
-
-int main() {
-    Map keranjang;
-    MapCreateEmpty(&keranjang);
-
-    printf("Masukkan perintah (contoh: CART ADD AK47 20):\n");
-    cartAdd(&keranjang);
-
-    return 0;
 }

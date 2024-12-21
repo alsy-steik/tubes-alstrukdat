@@ -5,13 +5,13 @@
 #include "../adt/MesinKata/MesinKata.h"
 #include "../adt/Barang/barang.h"
 
-void cartRemove(Map *cart) {
+void cartAdd(Map *cart, Map store) {
     printf("Masukkan perintah: ");
     startKataMajemuk(NULL); 
 
     if (is_same_string(currentKata.buffer, "CART")) {
         advKata();
-        if (is_same_string(currentKata.buffer, "REMOVE")) {
+        if (is_same_string(currentKata.buffer, "ADD")) {
             advKata(); 
 
             char nama_barang[100];
@@ -21,17 +21,11 @@ void cartRemove(Map *cart) {
 
             int quantity = getNum(); 
 
-            if (MapContains(*cart, nama_barang)) {
-                int current_quantity = MapGet(*cart, nama_barang);
-
-                if (quantity <= current_quantity) {
-                    MapInsert(cart, nama_barang, current_quantity - quantity);
-                    printf("Berhasil mengurangi %d %s dari keranjang belanja!\n", quantity, nama_barang);
-                } else {
-                    printf("Tidak berhasil mengurangi, hanya terdapat %d %s pada keranjang!\n", current_quantity, nama_barang);
-                }
+            if (MapContains(store, nama_barang)) {
+                MapInsert(cart, nama_barang, quantity);
+                printf("Berhasil menambahkan %d %s ke keranjang belanja!\n", quantity, nama_barang);
             } else {
-                printf("Barang tidak ada di keranjang belanja!\n");
+                printf("Barang tidak ada di toko!\n");
             }
         } else {
             printf("Perintah invalid; kembali ke menu utama.\n");
@@ -39,4 +33,17 @@ void cartRemove(Map *cart) {
     } else {
         printf("Perintah invalid; kembali ke menu utama.\n");
     }
+}
+
+int test_cart() {
+    Map keranjang;
+    MapCreateEmpty(&keranjang);
+    Map store;
+    MapCreateEmpty(&store);
+    MapInsert(&store, "AK47", 10);
+
+    printf("Masukkan perintah (contoh: CART ADD AK47 10):\n");
+    cartAdd(&keranjang, store);
+
+    return 0;
 }
