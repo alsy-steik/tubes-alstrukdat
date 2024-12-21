@@ -1,13 +1,14 @@
 #include "Barang.h"
-
+#include "../../util/util.h"
 void setBarangName(Barang* barang, const char* name) {
     int i = 0;
-    while(name[i] != '\0') {
-        barang->name[i] = name[i];
-        ++i;
-    }
+    strcpyHomemade(barang->name, name);
+    // while(name[i] != '\0') {
+    //     barang->name[i] = name[i];
+    //     ++i;
+    // }
 
-    barang->name[i] = '\0';
+    // barang->name[i] = '\0';
 }
 
 void setBarangPrice(Barang* barang, int price) {
