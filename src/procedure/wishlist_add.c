@@ -85,6 +85,7 @@ void WishlistAdd(DoublyLinkedListNode** head, ArrayDin arr){
 //     }
 // }
 
+
 // int main() {
 //     DoublyLinkedListNode* wishlist = NULL;
 
@@ -117,4 +118,4 @@ void WishlistAdd(DoublyLinkedListNode** head, ArrayDin arr){
 // }
 
 
-// gcc -o wishlist_add_new wishlist_add_new.c doublyLinkedList.c MesinKarakter.c MesinKata.c Barang.c ArrayDin.c
+// gcc -o wishlist_add wishlist_add.c doublyLinkedList.c MesinKarakter.c MesinKata.c Barang.c ArrayDin.c
