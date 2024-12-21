@@ -14,7 +14,7 @@ int MapIsEmpty(Map map) {
 // `key` = `nama_barang`, `value`=`quantity`
 void MapInsert(Map* map,const char* key, int value) {
     for(int i = 0; i < (map->count); ++i) {
-        ElType data = (map->data)[i];
+        MapElType data = (map->data)[i];
         if(isStringEqual(data.nama_barang, key)) {
             (map->data)[i].quantity = value;
             return;
@@ -32,7 +32,7 @@ void MapInsert(Map* map,const char* key, int value) {
 // `key` = nama barang
 int MapGetEl(Map map,const char* key) {
     for(int i = 0; i < map.count; ++i) {
-        ElType data = map.data[i];
+        MapElType data = map.data[i];
         if(isStringEqual(data.nama_barang, key)) return data.quantity;
     }
 
@@ -41,7 +41,7 @@ int MapGetEl(Map map,const char* key) {
 
 void MapDelete(Map* map, const char* key) {
     for(int i = 0; i < (map->count); ++i) {
-        ElType data = (map->data)[i];
+        MapElType data = (map->data)[i];
         if(isStringEqual(data.nama_barang, key)) { 
             --(map->count);
             for(int j = i; j < (map->count); ++j) {

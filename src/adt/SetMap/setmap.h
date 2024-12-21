@@ -9,11 +9,11 @@ typedef struct
     int quantity;          // value
 } MapElement;
 
-typedef MapElement ElType;
+typedef MapElement MapElType;
 
 typedef struct map
 {
-    ElType data[MAX_SIZE];
+    MapElType data[MAX_SIZE];
     int count;
 } Map;
 

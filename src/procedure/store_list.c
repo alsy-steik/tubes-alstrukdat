@@ -11,7 +11,7 @@ void store_list(ArrayDin arr)
         for (int i = 0; i < N; i++)
         {
             Barang storelist = getArrayDinElmt(arr, i);
-            printf("- %s\n", storelist.name);
+            printf("- %s - Harga: %d\n", storelist.name, storelist.price);
         }
     }
 
@@ -20,3 +20,4 @@ void store_list(ArrayDin arr)
         printf("TOKO KOSONG\n");
     }
 }
+
