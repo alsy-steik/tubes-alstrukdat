@@ -17,3 +17,16 @@ int isStringEqual(const char* s1, const char* s2) {
     }
     return 1;
 }
+
+// int strlenHomemade(const char* s) {
+//     int i = 0;
+//     while(s[i] != '\0') ++i;
+//     return i;
+// }
+
+// void concat(char* dest, const char* s) {
+//     dest = dest + strlenHomemade(dest);
+//     while(*s) *dest++ = *s++;
+//     *dest = *s;
+// }
+

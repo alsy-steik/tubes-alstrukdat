@@ -17,6 +17,6 @@ int isEmpty(Stack *st);
 void push(Stack **stack, StackElType el);
 void pushNT(Stack **stack, const char *nama_barang, int total_harga);
 void pop(Stack **stack);
-ElType top(Stack *stack);
+StackElType top(Stack *stack);
 
 #endif
