@@ -3,7 +3,7 @@
 
 void setName(User* user, const char* name) {
     int i = 0;
-    strcpyHomemade(user->name, name)
+    strcpyHomemade(user->name, name);
     // while(name[i] != '\0') {
     //     user->name[i] = name[i];
     //     ++i;
