@@ -5,14 +5,14 @@
 #include "MesinKarakter.h"
 #include "MesinKata.h"
 
-int NbElmt_list(DoublyLinkedListNode* head){
-    int count = 0;
-    while (head != NULL){
-        count++;
-        head = head->next;
-    }
-    return count;
-}
+// int NbElmt_list(DoublyLinkedListNode* head){
+//     int count = 0;
+//     while (head != NULL){
+//         count++;
+//         head = head->next;
+//     }
+//     return count;
+// }
 
 int LinkedListSearch_Index(DoublyLinkedList list, const char* string){
     int index = 1;
