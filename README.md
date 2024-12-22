@@ -41,4 +41,4 @@ PURRMART adalah aplikasi berbasis Command-Line Interface (CLI) yang dirancang un
 - QUIT: Keluar dari program.
 
 ## Compile Main
-gcc -o main main.c ArrayDin.c ArrayStat.c Barang.c circular_queue.c doublyLinkedList.c MesinKarakter.c MesinKata.c Queue.c setmap.c stack.c User.c util.c
+gcc -o main main.c adt/ArrayDin/ArrayDin.c adt/ArrayStat/ArrayStat.c adt/Barang/Barang.c adt/Circular Queue/circular_queue.c adt/LinkedList/doublyLinkedList.c adt/MesinKarakter/MesinKarakter.c adt/MesinKata/MesinKata.c adt/Queue/Queue.c adt/SetMap/setmap.c adt/Stack/stack.c adt/User/User.c util/util.c
