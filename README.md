@@ -12,3 +12,30 @@ PURRMART adalah aplikasi berbasis Command-Line Interface (CLI) yang dirancang un
 18223057
 * Dhafin Faidhulhaq
 18223103
+
+## Fitur
+- START: Memulai sesi baru.
+- LOAD: Memuat sesi dari file konfigurasi.
+- REGISTER: Mendaftar akun baru.
+- LOGIN: Masuk ke akun dan memulai sesi.
+- WORK: Melakukan pekerjaan.
+- WORK CHALLENGE: Mengerjakan tantangan kerja.
+- STORE LIST: Melihat daftar barang di toko.
+- STORE REQUEST: Meminta penambahan barang di toko.
+- STORE SUPPLY: Menambahkan barang dari permintaan.
+- STORE REMOVE: Menghapus barang di toko.
+- PROFILE: Melihat profil pengguna (hanya saat login).
+- CART ADD <nama> <n>: Menambahkan barang ke keranjang belanja.
+- CART REMOVE <nama> <n>: Mengurangi barang dari keranjang belanja.
+- CART SHOW: Melihat isi keranjang belanja.
+- CART PAY: Melakukan pembayaran barang dalam keranjang.
+- HISTORY <n>: Melihat riwayat pembelian.
+- WISHLIST ADD: Menambahkan barang ke wishlist.
+- WISHLIST SWAP <i> <j>: Menukar posisi barang di wishlist.
+- WISHLIST REMOVE <i>: Menghapus barang di wishlist berdasarkan posisi.
+- WISHLIST REMOVE: Menghapus barang di wishlist berdasarkan nama.
+- WISHLIST CLEAR: Mengosongkan seluruh wishlist.
+- WISHLIST SHOW: Melihat daftar wishlist.
+- LOGOUT: Keluar dari sesi login.
+- SAVE: Menyimpan status program ke file.
+- QUIT: Keluar dari program.
