@@ -27,14 +27,15 @@ void ignoreBlank();
 void startKata(const char* path);
 void startKataMajemuk(const char* path);
 void advKata();
+void advKataMajemuk();
 void salinKata();
 void salinKataMajemuk();
 int Uppercased_Char(int num);
 boolean is_same_string (const char str1[], const char str2[]);
 int getNum();
-void saveFile(const char *filename, ArrayStat *user, ArrayDin *barang);
+// void saveFile(const char *filename, ArrayStat *user, ArrayDin *barang);
 void PrintKata(Kata kata);
-boolean Load(const char *filename, ArrayStat* user, ArrayDin *barang);
+// boolean Load(const char *filename, ArrayStat* user, ArrayDin *barang);
 
 #endif
 

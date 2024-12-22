@@ -20,6 +20,20 @@ Barang getArrayDinElmt(ArrayDin a, int pos)
     return a.arr[pos];
 }
 
+Barang getArrayDinElmtByName(ArrayDin a, const char* name)
+{
+    for (int i = 0; i < a.len; ++i)
+    {
+        if (is_same_string(a.arr[i].name, name))
+        {
+            return a.arr[i];
+        }
+    }
+
+    puts("Element not found.");
+    return createBarang("", 0);
+}
+
 void setArrayDinElmnt(ArrayDin *a, Barang val, int pos)
 {
     if (pos < a->len)

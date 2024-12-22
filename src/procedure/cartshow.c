@@ -2,19 +2,20 @@
 #include <string.h>
 #include "../util/util.h"
 #include "../adt/SetMap/setmap.h"
+#include "../adt/MesinKarakter/MesinKarakter.h"
 #include "../adt/MesinKata/MesinKata.h"
 #include "../adt/Barang/barang.h"
 
-void cartShow(Map *cart, Map store) {
-    printf("Masukkan perintah: ");
-    startKataMajemuk(NULL); 
+void cartShow(Map *cart, ArrayDin *arr) {
+    printf("Masukkan perintah CART SHOW: ");
+    startKata(NULL); 
 
     if (is_same_string(currentKata.buffer, "CART")) {
         advKata();
         if (is_same_string(currentKata.buffer, "SHOW")) {
             advKata(); 
 
-            if (MapSize(*cart) == 0) {
+            if (cart->count == 0) {
                 printf("Keranjang kamu kosong!\n");
             } else {
                 printf("Berikut adalah isi keranjangmu.\n");
@@ -23,12 +24,14 @@ void cartShow(Map *cart, Map store) {
                 int total_biaya = 0;
 
                 // print isi keranjang
-                for (int i = 0; i < MapSize(*cart); i++) {
+                for (int i = 0; i < cart->count; i++) {
                     char nama_barang[100];
-                    int quantity;
-                    MapGet(*cart, i, nama_barang, &quantity);
+                    strcpyHomemade(nama_barang, cart->data[i].nama_barang);
+                    int quantity = MapGetEl(*cart, nama_barang);
 
-                    int harga_barang = MapGetValue(store, nama_barang);
+                    // int harga_barang = MapGetEl(store, nama_barang);
+                    Barang currentBarang = getArrayDinElmtByName(*arr, nama_barang);
+                    int harga_barang = currentBarang.price;
                     int total = quantity * harga_barang;
 
                     total_biaya += total;

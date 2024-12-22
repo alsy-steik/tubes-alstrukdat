@@ -42,6 +42,15 @@ void advKata() {
     }
 }
 
+void advKataMajemuk() {
+    ignoreBlank();
+    if(cc == MARK) {
+        endKata = true;
+    } else {
+        endKata = false;
+        salinKataMajemuk();
+    }
+}
 void salinKata() {
     int i = 0;
     while((cc != MARK) && (cc != BLANK)) {
@@ -90,46 +99,46 @@ int getNum() {
     return atoi(currentKata.buffer);
 }
 
-void saveFile(const char *filename, ArrayStat *user, ArrayDin *barang)
-{
-    FILE *fptr = fopen(filename, "w");
+// void saveFile(const char *filename, ArrayStat *user, ArrayDin *barang)
+// {
+//     FILE *fptr = fopen(filename, "w");
 
-    fprintf(fptr, "%d\n", barang->len);
-    for (int i = 0; i < barang->len; ++i)
-    {
-        Barang bjir = (barang->arr)[i];
-        fprintf(fptr, "%d %s\n", bjir.price, bjir.name);
-    }
+//     fprintf(fptr, "%d\n", barang->len);
+//     for (int i = 0; i < barang->len; ++i)
+//     {
+//         Barang bjir = (barang->arr)[i];
+//         fprintf(fptr, "%d %s\n", bjir.price, bjir.name);
+//     }
 
-    fprintf(fptr, "%d\n", user->len);
-    for (int i = 0; i < user->len; ++i)
-    {
-        User bjir = (user->arr)[i];
-        fprintf(fptr, "%d %s %s\n", bjir.money, bjir.name, bjir.password);
-    }
+//     fprintf(fptr, "%d\n", user->len);
+//     for (int i = 0; i < user->len; ++i)
+//     {
+//         User bjir = (user->arr)[i];
+//         fprintf(fptr, "%d %s %s\n", bjir.money, bjir.name, bjir.password);
+//     }
 
-    fclose(fptr);
-}
+//     fclose(fptr);
+// }
 
-boolean Load(const char *filename, ArrayStat *user, ArrayDin *barang)
-{
-    FILE *file;
+// boolean Load(const char *filename, ArrayStat *user, ArrayDin *barang)
+// {
+//     FILE *file;
     
 
-    file = fopen(filename, "r");
-    if (file)
-    {
-        printf("Save file berhasil dibaca. PURRMART berhasil dijalankan.");
+//     file = fopen(filename, "r");
+//     if (file)
+//     {
+//         printf("Save file berhasil dibaca. PURRMART berhasil dijalankan.");
 
-        /**
-         * TODO: Load data into `user` and `barang`
-         */
-        fclose(file);
-        return true;
-    }
+//         /**
+//          * TODO: Load data into `user` and `barang`
+//          */
+//         fclose(file);
+//         return true;
+//     }
     
-    return false;
-}
+//     return false;
+// }
 
 void PrintKata(Kata kata){
     for (int i = 0; i<kata.length; i++){
