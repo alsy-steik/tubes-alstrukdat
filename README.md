@@ -39,3 +39,6 @@ PURRMART adalah aplikasi berbasis Command-Line Interface (CLI) yang dirancang un
 - LOGOUT: Keluar dari sesi login.
 - SAVE: Menyimpan status program ke file.
 - QUIT: Keluar dari program.
+
+## Compile Main
+gcc -o main main.c ArrayDin.c ArrayStat.c Barang.c circular_queue.c doublyLinkedList.c MesinKarakter.c MesinKata.c Queue.c setmap.c stack.c User.c util.c
