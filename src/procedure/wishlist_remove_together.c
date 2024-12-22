@@ -14,45 +14,45 @@ int NbElmt_list(DoublyLinkedListNode* head){
     return count;
 }
 
-int LinkedListSearch_Index(DoublyLinkedListNode* head, const char* string){
+int LinkedListSearch_Index(DoublyLinkedList list, const char* string){
     int index = 1;
-    while (head != NULL){
-        if (is_same_string(head->data, string)){
+    while (list.head != NULL){
+        if (is_same_string(list.head->data, string)){
             break;
         }
         index++;
-        head = head->next;
+        list.head = list.head->next;
     }
     return index;
 }
 
-boolean IsEmpty(DoublyLinkedListNode* head){
+boolean IsEmpty(DoublyLinkedList head){
     return (head == NULL);
 }
 
-void Wishlist_remove_i(DoublyLinkedListNode** head, int i){
+void Wishlist_remove_i(DoublyLinkedList* list, int i){
     i--;
     /*Menyesuaikan index dari input (1 sampai n) ke list(0 sampai n-1)*/
-    int NbElmt = NbElmt_list(*head);
-    if (IsEmpty(*head)){
-            printf("Penghapusan barang WISHLIST gagal dilakukan, WISHLIST kosong!\n");
-        }
+    int NbElmt = list->len;
+    if (IsEmpty(*list)){
+        printf("Penghapusan barang WISHLIST gagal dilakukan, WISHLIST kosong!\n");
+    }
 
     else if (i >= 0 && i < NbElmt){
         if (i == 0){
-            LinkedListDeleteBeginning(head);
+            LinkedListDeleteBeginning(list);
             /*Bila indeks - 1 == 0 (menandakan di elmt awal), akan delete Beginning*/
         }
         else if (i == NbElmt){
-            LinkedListDeleteEnd(head);
+            LinkedListDeleteEnd(list);
             /*Bila indeks - 1 == NbElmt(menandakan di elmt akhir), akan delete End*/
         }
         else{
-            LinkedListDeleteElem(head, i);
+            LinkedListDeleteElem(list, i);
             /*Bila indeks bukan di ujung, akan delete elmt*/
         }
         
-        if ((NbElmt - 1) == (NbElmt_list(*head))){
+        if ((NbElmt - 1) == list->len){
             printf("Berhasil menghapus barang posisi ke-%d dari wishlist!\n", i+1);
             /*Memvalidasi apakah penghapusan barang sukses*/
         }
@@ -65,20 +65,20 @@ void Wishlist_remove_i(DoublyLinkedListNode** head, int i){
     }
 }
 
-void Wishlist_remove(DoublyLinkedListNode** head){
+void Wishlist_remove(DoublyLinkedList* list){
     printf("Masukkan nama barang yang akan dihapus: ");
     startKataMajemuk(NULL);
     /*Meminta input user untuk barang yang ingin dihapus*/
 
 
-    int NbElmt = NbElmt_list(*head);
+    int NbElmt = list->len;
     /*Untuk mendapatkan banyaknya element sebagai ref. max index*/
 
-    int index = LinkedListSearch_Index(*head, currentKata.buffer);
+    int index = LinkedListSearch_Index(*list, currentKata.buffer);
     /*Mendapatkan index dari barang tersebut, bila tidak ada akan melebihi NbElmt*/
 
     if (index > 0 && index <= NbElmt){
-        Wishlist_remove_i(head, index);
+        Wishlist_remove_i(list, index);
         printf("%s berhasil dihapus dari wishlist!\n", currentKata.buffer);
         /*Validasi bahwa index in range of 1 sampai NbElmt*/
     }

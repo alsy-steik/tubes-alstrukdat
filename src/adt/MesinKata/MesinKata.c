@@ -132,6 +132,7 @@ boolean saveFile(const char *filename, ArrayStat *user, ArrayDin *barang)
     {
         User bjir = (user->arr)[i];
         fprintf(fptr, "%d %s %s\n", bjir.money, bjir.name, bjir.password);
+        
     }
 
     fclose(fptr);

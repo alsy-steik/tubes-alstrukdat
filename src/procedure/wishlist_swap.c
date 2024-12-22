@@ -21,8 +21,8 @@ int absolute(int a){
     }
 }
 
-void Wishlist_swap(DoublyLinkedListNode** head, int a, int b){
-    int count = NbElmt_list(*head);
+void Wishlist_swap(DoublyLinkedList* list, int a, int b){
+    int count = list->len;
     /*Menghitung berapa banyak element pada head*/
 
 
@@ -41,12 +41,12 @@ void Wishlist_swap(DoublyLinkedListNode** head, int a, int b){
     }
     
     else{
-        DoublyLinkedListNode *P1 = *head;
+        DoublyLinkedListNode *P1 = list->head;
         for (int i = 1; i < a; i++){
             P1 = P1->next;
         }
 
-        DoublyLinkedListNode *P2 = *head;
+        DoublyLinkedListNode *P2 = list->head;
         for (int i = 1; i < b; i++){
             P2 = P2->next;
         }
@@ -92,7 +92,7 @@ void Wishlist_swap(DoublyLinkedListNode** head, int a, int b){
             /*Bila di ujung(NULL), maka tak akan si NULL gabakal menunjuk apa-apa*/
         }
         if (a == 1){
-            *head = P2;
+            list->head = P2;
         }
     }
 }

@@ -3,8 +3,8 @@
 #include "boolean.h"
 #include "doublyLinkedList.h"
 
-void Wishlist_show(DoublyLinkedListNode *head){
-    printDoublyLinkedListNode(head);
+void Wishlist_show(DoublyLinkedList list){
+    printDoublyLinkedList(list);
 }
 
 // int main(){

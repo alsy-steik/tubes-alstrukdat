@@ -1,29 +1,36 @@
 #include "doublyLinkedList.h"
+#include <stdio.h>
 
 int main()
 {
-    DoublyLinkedListNode *head = NULL;
-    LinkedListInsertBeginning(&head, "Laptop");
-    LinkedListInsertBeginning(&head, "Mouse Gaming");
-    printDoublyLinkedListNode(head);
+
+    DoublyLinkedList list;
+    createEmptyLinkedList(&list);
+
+    LinkedListInsertBeginning(&list, "Laptop");
+    LinkedListInsertBeginning(&list, "Mouse Gaming");
+    printDoublyLinkedList(list);
 
     putchar('\n');
-    LinkedListInsertEnd(&head, "Beras Premium");
-    LinkedListInsertEnd(&head, "PERTALITE");
-    printDoublyLinkedListNode(head);
+    LinkedListInsertEnd(&list, "Beras Premium");
+    LinkedListInsertEnd(&list, "PERTALITE");
+    printDoublyLinkedList(list);
     putchar('\n');
 
-    LinkedListInsertElem(&head, "Jam Gadang", 1);
-    printDoublyLinkedListNode(head);
+    LinkedListInsertElem(&list, "Jam Gadang", 1);
+    printDoublyLinkedList(list);
     putchar('\n');
 
-    LinkedListDeleteBeginning(&head);
-    LinkedListDeleteEnd(&head);
-    printDoublyLinkedListNode(head);
+    printf("%s\n", LinkedListGetElmt(list, 3));
+
+    LinkedListDeleteBeginning(&list);
+    printf("\n%d\n", list.len);
+    LinkedListDeleteEnd(&list);
+    printDoublyLinkedList(list);
     putchar('\n');
 
-    LinkedListDeleteElem(&head, 1);
-    printDoublyLinkedListNode(head);
+    LinkedListDeleteElem(&list, 1);
+    printDoublyLinkedList(list);
     putchar('\n');
 
     return 0;

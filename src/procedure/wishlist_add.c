@@ -7,25 +7,25 @@
 #include "Barang.h"
 #include "ArrayDin.h"
 
-boolean LinkedListSearch(DoublyLinkedListNode* head, const char* string){
-    while (head != NULL){
-        if (is_same_string(head->data, string)){
+boolean LinkedListSearch(DoublyLinkedList list, const char* string){
+    while (list.head != NULL){
+        if (is_same_string(list.head->data, string)){
             return true;
         }
-        head = head->next;
+        list.head = head->next;
     }
     return false;
 }
 
-boolean LinkedListEnd_ISS(DoublyLinkedListNode* head, const char* string){
-    while (head->next != NULL){
-        head = head->next;
+boolean LinkedListEnd_ISS(DoublyLinkedListNode head, const char* string){
+    while (list.head->next != NULL){
+        list.head = head->next;
     }
-    return (is_same_string(head->data, string));
+    return (is_same_string(list.head->data, string));
 }
 
 
-void WishlistAdd(DoublyLinkedListNode** head, ArrayDin arr){
+void WishlistAdd(DoublyLinkedList* head, ArrayDin arr){
     printf("Masukkan nama barang: ");
     startKataMajemuk(NULL); 
     /*Meminta input user*/

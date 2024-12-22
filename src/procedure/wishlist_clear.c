@@ -3,10 +3,10 @@
 #include "boolean.h"
 #include "doublyLinkedList.h"
 
-void Wishlist_clear(DoublyLinkedListNode **head){
-    *head = NULL;
-    /*Membuat linked list menjadi list baru yang empty*/
-    if(*head == NULL){
+void Wishlist_clear(DoublyLinkedList* list){
+    createEmptyLinkedList(list);
+
+    if(list->head == NULL){
         printf("Wishlist kamu berhasil dihapus!\n");
     }
 }

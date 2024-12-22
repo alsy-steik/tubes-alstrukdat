@@ -1,71 +1,82 @@
 #include "doublyLinkedList.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "../../util/util.h"
 
-void copyStr(char* dest, const char* source) {
-    int i = 0;
-    while (source[i] != '\0')
-    {
-        dest[i] = source[i];
-        i++;
-    }
-
-    dest[i] = source[i];
+void createEmptyLinkedList(DoublyLinkedList* list) {
+    list->len = 0;
+    list->head = NULL;
 }
 
-void LinkedListInsertBeginning(DoublyLinkedListNode** head, const char* elem) {
+void LinkedListIsEmpty(DoublyLinkedList list) {
+    return !(list.head);
+}
+
+void LinkedListInsertBeginning(DoublyLinkedList* list, const char* elem) {
 
     DoublyLinkedListNode* new_DoublyLinkedListNode = (DoublyLinkedListNode* ) malloc(sizeof(DoublyLinkedListNode));
     if(!new_DoublyLinkedListNode) return;
 
-    copyStr(new_DoublyLinkedListNode->data, elem);
+    strcpyHomemade(new_DoublyLinkedListNode->data, elem);
 
-    new_DoublyLinkedListNode->next = *head;
-    if( *head != NULL) {
-        ( *head) -> prev = new_DoublyLinkedListNode;
+    new_DoublyLinkedListNode->next = list->head;
+    if( list->head != NULL) {
+        list->head->prev = new_DoublyLinkedListNode;
     }
     new_DoublyLinkedListNode->prev = NULL;
-    *head = new_DoublyLinkedListNode;
+    list->head = new_DoublyLinkedListNode;
+    (list->len)++;
 }
 
-void LinkedListInsertElem(DoublyLinkedListNode** head, const char* elem, int pos) {
+void LinkedListInsertElem(DoublyLinkedList* list, const char* elem, int pos) {
     if(pos == 0) {
-        LinkedListInsertBeginning(head, elem);
+        LinkedListInsertBeginning(list, elem);
         return;
     }
 
-    DoublyLinkedListNode *temp = *head;
+    DoublyLinkedListNode *temp = list->head;
     while (pos--)
     {
         temp = temp->next;
     }
 
     if(temp->next == NULL) {
-        LinkedListInsertEnd(head, elem);
+        DoublyLinkedList temp_list;
+        temp_list.head = temp;
+        LinkedListInsertEnd(&temp_list, elem);
         return;
     }
 
     DoublyLinkedListNode *new_node = (DoublyLinkedListNode* ) malloc(sizeof(DoublyLinkedListNode));
-    copyStr(new_node->data, elem);
+    strcpyHomemade(new_node->data, elem);
     
-    DoublyLinkedListNode *prev = temp->prev;
-    prev->next = new_node;
-    new_node->prev = temp;
+    temp->prev->next = new_node;
+    new_node->prev = temp->prev;
 
     new_node->next = temp;
     temp->prev = new_node;
+
+    list->len++;
 }
 
-void LinkedListInsertEnd(DoublyLinkedListNode** head, const char* elem) {
+const char* LinkedListGetElmt(DoublyLinkedList list, int pos) {
+    while(pos--) {
+        list.head = list.head->next;
+    }
+
+    return list.head->data;
+}
+
+void LinkedListInsertEnd(DoublyLinkedList* list, const char* elem) {
     
-    DoublyLinkedListNode* temp = *head;
+    DoublyLinkedListNode* temp = list->head;
     if(temp == NULL) {
-        LinkedListInsertBeginning(head, elem);
+        LinkedListInsertBeginning(list, elem);
         return;
     }
 
     DoublyLinkedListNode* new_DoublyLinkedListNode = (DoublyLinkedListNode* ) malloc(sizeof(DoublyLinkedListNode));
-    copyStr(new_DoublyLinkedListNode->data, elem);
+    strcpyHomemade(new_DoublyLinkedListNode->data, elem);
     new_DoublyLinkedListNode->next = NULL;
     while(temp->next != NULL) {
         temp = temp->next;
@@ -74,55 +85,52 @@ void LinkedListInsertEnd(DoublyLinkedListNode** head, const char* elem) {
     
     temp->next = new_DoublyLinkedListNode;
     new_DoublyLinkedListNode->prev = temp;
+
+    list->len++;
 }
 
-void LinkedListDeleteElem(DoublyLinkedListNode** head, int pos) {
-    DoublyLinkedListNode *temp = *head;
+void LinkedListDeleteElem(DoublyLinkedList* list, int pos) {
+    DoublyLinkedListNode *temp = list->head;
     while(pos--) {
         temp = temp->next;
     }
 
     if(temp->prev != NULL) {
-        DoublyLinkedListNode* prev_node = temp->prev;
-        prev_node->next = temp->next;
+        temp->prev->next = temp->next;
     } else {
-        *head = temp->next;
+        list->head = temp->next;
     }
 
     if(temp->next != NULL) {
-        DoublyLinkedListNode* next_node = temp->next;
-        next_node->prev = temp->prev;
+        temp->next->prev = temp->prev;
     }
-
+    list->len--;
     free(temp);
 }
 
-void LinkedListDeleteBeginning(DoublyLinkedListNode** head) {
-    DoublyLinkedListNode *temp = *head;
-    *head = temp->next;
-    if( *head != NULL) {
-        ( *head)->prev = NULL;
-    }
-    free(temp);
+void LinkedListDeleteBeginning(DoublyLinkedList* list) {
+    LinkedListDeleteElem(list, 0);
 }
 
-void LinkedListDeleteEnd(DoublyLinkedListNode** head) {
-    DoublyLinkedListNode *temp = *head;
-    while(temp->next != NULL) {
-        temp = temp->next;
-    }
+void LinkedListDeleteEnd(DoublyLinkedList* list) {
+    LinkedListDeleteElem(list, list->len - 1);
+    // DoublyLinkedListNode *temp = *head;
+    // while(temp->next != NULL) {
+    //     temp = temp->next;
+    // }
 
-    DoublyLinkedListNode* prev = temp->prev;
-    prev->next = NULL;
-    free(temp);
+    // DoublyLinkedListNode* prev = temp->prev;
+    // prev->next = NULL;
+    // free(temp);
 }
 
-void printDoublyLinkedListNode(DoublyLinkedListNode* head) {
-    if (head != NULL){
+void printDoublyLinkedList(DoublyLinkedList list) {
+    
+    if (list.head != NULL){
         int i = 1;
-        while(head != NULL) {
-            printf("%d. %s\n", i, head->data);
-            head = head->next;
+        while(list.head != NULL) {
+            printf("%d. %s\n", i, list.head->data);
+            list.head = list.head->next;
             i++;
             /*Loop dari awal list hingga akhir dan print tiap elmt*/
         }
