@@ -1,7 +1,8 @@
 #include "stack.h"
 #include <stdio.h>
 int main() {
-    Stack *st = NULL;
+    Stack st;
+    StackInitEmpty(&st);
 
     printf("%d\n", isEmpty(st));
 

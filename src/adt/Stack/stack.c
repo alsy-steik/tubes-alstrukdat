@@ -3,30 +3,37 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int isEmpty(Stack* st) {
-    return st == NULL;
+void StackInitEmpty(Stack *st) {
+    st->len = 0;
+    st->top = NULL;
 }
 
-void push(Stack** stack, StackElType el) {
+int isEmpty(Stack st) {
+    return !(st.len);
+}
+
+void push(Stack* stack, StackElType el) {
     pushNT(stack, el.nama_barang, el.harga_total);
 }
 
-void pushNT(Stack** stack, const char* nama_barang, int total_harga) {
-    Stack* new_node = (Stack* ) malloc(sizeof(Stack));
+void pushNT(Stack* stack, const char* nama_barang, int total_harga) {
+    StackNode* new_node = (StackNode* ) malloc(sizeof(Stack));
     (new_node->data).harga_total = total_harga;
     strcpyHomemade((new_node->data).nama_barang, nama_barang);
-    new_node->link = *stack;
-    *stack = new_node;
+    new_node->link = stack->top;
+    stack->top = new_node;
+    (stack->len)++;
 }
 
-void pop(Stack** stack) {
+void pop(Stack* stack) {
     if(isEmpty(*stack)) return;
-    Stack* temp_head = *stack;
-    *stack = ( *stack) -> link;
+    StackNode* temp_head = stack->top;
+    stack->top = temp_head->link;
     free(temp_head);
+    (stack->len)--;
 }
 
-StackElType top(Stack* stack) {
+StackElType top(Stack stack) {
     if(isEmpty(stack)) {
         printf("ga ada nbri");
         StackElement st;
@@ -34,7 +41,7 @@ StackElType top(Stack* stack) {
         return st;
     }
 
-    return stack->data;
+    return stack.top->data;
 }
 
 // reverse a string using stack;
