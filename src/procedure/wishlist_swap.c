@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "boolean.h"
-#include "doublyLinkedList.h"
+#include "../boolean.h"
+#include "../adt/LinkedList/doublyLinkedList.h"
 
 int NbElmt_list(DoublyLinkedListNode* head){
     int count = 0;
@@ -97,27 +97,28 @@ void Wishlist_swap(DoublyLinkedList* list, int a, int b){
     }
 }
 
-// int main() {
-//     DoublyLinkedListNode* wishlist = NULL;
+int main() {
+    DoublyLinkedList wishlist;
+    createEmptyLinkedList(&wishlist);
 
-//     LinkedListInsertEnd(&wishlist, "Laptop");
-//     LinkedListInsertEnd(&wishlist, "Smartphone");
-//     LinkedListInsertEnd(&wishlist, "Headphone");
-//     LinkedListInsertEnd(&wishlist, "Monitor");
-//     LinkedListInsertEnd(&wishlist, "Keyboard");
-//     LinkedListInsertEnd(&wishlist, "Mouse");
+    LinkedListInsertEnd(&wishlist, "Laptop");
+    LinkedListInsertEnd(&wishlist, "Smartphone");
+    LinkedListInsertEnd(&wishlist, "Headphone");
+    LinkedListInsertEnd(&wishlist, "Monitor");
+    LinkedListInsertEnd(&wishlist, "Keyboard");
+    LinkedListInsertEnd(&wishlist, "Mouse");
 
-//     printf("\nCurrent wishlist:\n");
-//     printDoublyLinkedListNode(wishlist);
+    printf("\nCurrent wishlist:\n");
+    printDoublyLinkedList(wishlist);
 
-//     Wishlist_swap(&wishlist, 1, 4);
+    Wishlist_swap(&wishlist, 1, 4);
 
 
-//     printf("\nCurrent wishlist:\n");
-//     printDoublyLinkedListNode(wishlist);
+    printf("\nCurrent wishlist:\n");
+    printDoublyLinkedList(wishlist);
 
-//     return 0;
-// }
+    return 0;
+}
 
 
 // gcc -o wishlist_swap wishlist_swap.c doublyLinkedList.c

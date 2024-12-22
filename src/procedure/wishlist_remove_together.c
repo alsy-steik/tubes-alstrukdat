@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "boolean.h"
-#include "doublyLinkedList.h"
-#include "MesinKarakter.h"
-#include "MesinKata.h"
+#include "../boolean.h"
+#include "../adt/LinkedList/doublyLinkedList.h"
+#include "../adt/MesinKarakter/MesinKarakter.h"
+#include "../adt/MesinKata/MesinKata.h"
 
 int NbElmt_list(DoublyLinkedListNode* head){
     int count = 0;
@@ -27,7 +27,7 @@ int LinkedListSearch_Index(DoublyLinkedList list, const char* string){
 }
 
 boolean IsEmpty(DoublyLinkedList head){
-    return (head == NULL);
+    return (head.head == NULL);
 }
 
 void Wishlist_remove_i(DoublyLinkedList* list, int i){
@@ -89,7 +89,8 @@ void Wishlist_remove(DoublyLinkedList* list){
 
 
 // int main() {
-//     DoublyLinkedListNode* wishlist = NULL;
+//     DoublyLinkedList wishlist;
+//     createEmptyLinkedList(&wishlist);
 
 //     LinkedListInsertEnd(&wishlist, "Laptop");
 //     LinkedListInsertEnd(&wishlist, "Smartphone");
@@ -99,17 +100,17 @@ void Wishlist_remove(DoublyLinkedList* list){
 //     LinkedListInsertEnd(&wishlist, "Mouse");
 
 //     printf("\nCurrent wishlist:\n");
-//     printDoublyLinkedListNode(wishlist);
+//     printDoublyLinkedList(wishlist);
 
 //     Wishlist_remove(&wishlist);
 
 
 //     printf("\nCurrent wishlist:\n");
-//     printDoublyLinkedListNode(wishlist);
+//     printDoublyLinkedList(wishlist);
 
 //     return 0;
 // }
 
 
 
-// gcc -o wishlist_remove_together wishlist_remove_together.c doublyLinkedList.c MesinKarakter.c MesinKata.c
+// // gcc -o wishlist_remove_together wishlist_remove_together.c doublyLinkedList.c MesinKarakter.c MesinKata.c

@@ -7,7 +7,7 @@
 #include "../../boolean.h"
 #include "../ArrayStat/ArrayStat.h"
 #include "../ArrayDin/ArrayDin.h"
-
+#include "../../util/util.h"
 
 #define BUFFER_SIZE 100
 #define BLANK ' '
@@ -29,12 +29,11 @@ void advKata();
 void advKataMajemuk();
 void salinKata();
 void salinKataMajemuk();
-int Uppercased_Char(int num);
-boolean is_same_string (const char str1[], const char str2[]);
+// int Uppercased_Char(int num);
 int getNum();
-boolean saveFile(const char *filename, ArrayStat *user, ArrayDin *barang);
+boolean saveFile(const char *filename, ArrayStat *user, ArrayDin* barang);
 void PrintKata(Kata kata);
-boolean Load(const char *filename, ArrayStat* user, ArrayDin *barang);
+boolean Load(const char *filename, ArrayStat *user, ArrayDin* barang);
 
 #endif
 

@@ -84,27 +84,6 @@ void salinKataMajemuk() {
     currentKata.length = i;
 }
 
-int Uppercased_Char(int num){
-    if (num >= 'a' && num <= 'z'){
-        return (num - 32);
-    }
-
-    return num;
-}
-
-boolean is_same_string(const char str1[], const char str2[]){
-    int i = 0;
-        
-    while (str1[i] != '\0' && str2[i] != '\0'){
-        if (Uppercased_Char(str1[i]) != Uppercased_Char(str2[i])){
-            return false;
-        }
-        i++;
-    }
-    // return (str1[i] == '\0' && str2[i] == '\0');
-    return (true);
-}
-
 int getNum() {
     startKata(NULL);
     return atoi(currentKata.buffer);
@@ -133,6 +112,18 @@ boolean saveFile(const char *filename, ArrayStat *user, ArrayDin *barang)
         User bjir = (user->arr)[i];
         fprintf(fptr, "%d %s %s\n", bjir.money, bjir.name, bjir.password);
         
+        
+        fprintf(fptr, "%d\n", bjir.riwayat_pembelian.len);
+        while(bjir.riwayat_pembelian.len) {
+            fprintf(fptr, "%d %s\n", top(bjir.riwayat_pembelian));
+            pop(&bjir.riwayat_pembelian);
+        }
+
+        fprintf(fptr, "%d\n",bjir.wishlist.len);
+        while (bjir.wishlist.len)
+        {
+            fprintf(fptr, "%s\n", bjir.wishlist.head->data);
+        }
     }
 
     fclose(fptr);
@@ -164,7 +155,7 @@ void loadBarang(ArrayDin *barang) {
 
 void loadWishlist(User* u) {
 
-    u->wishlist = NULL;
+    u->wishlist.head = NULL;
     advKata();
     int n = atoi(currentKata.buffer);
     while (n--)
@@ -195,7 +186,7 @@ void loadUserData(ArrayStat *user_list) {
 
 void loadRiwayatPembelianUser(User* user) {
 
-    user->riwayat_pembelian = NULL;
+    user->riwayat_pembelian.top = NULL;
 
     advKata();
     int n = atoi(currentKata.buffer);
@@ -253,101 +244,110 @@ void PrintKata(Kata kata){
     }
 }
 
-int main() {
+// int main() {
 
-    // ArrayDin barang;
-    // MakeEmptyArrayDin(&barang);
-    // ArrayStat user;
-    // createEmpty(&user);
-    // Load("sample.txt", &user, &barang);
-    // puts("\n========================BARANG========================");
 
-    // for(int i = 0; i < barang.len; ++i) {
-    //     printf("{name: %s, price: %d}\n", barang.arr[i].name, barang.arr[i].price);
-    // }
+//     ArrayDin barang;
+//     MakeEmptyArrayDin(&barang);
 
-    // puts("\n=========================USER=========================");
-    // for(int i = 0; i < user.len; ++i) {
-    //     printf("User#%i:\n", i);
-    //     User u = user.arr[i];
-    //     printf("username: %s\n", u.name);
-    //     printf("password: %s\n", u.password);
-    //     printf("money: %d\n", u.money);
-    //     puts("riwayat pembelian: ");
-    //     Stack *temp = u.riwayat_pembelian;
-    //     while(temp != NULL) {
-    //         printf("- [total: %d, nama_barang: %s]\n",temp->data.harga_total, temp->data.nama_barang);
-    //         temp = temp->link;
-    //     }
-    //     puts("wishlist: ");
-    //     DoublyLinkedListNode *manig = u.wishlist;
-    //     while (manig != NULL)
-    //     {
-    //         printf("- %s\n", manig->data);
-    //         manig = manig->next;
-    //     }
+//     ArrayStat user;
+//     createEmpty(&user);
+
+//     Load("sample.txt", &user, &barang);
+
+//     saveFile("kucing.txt", &user, &barang);
+//     // ArrayDin barang;
+//     // MakeEmptyArrayDin(&barang);
+//     // ArrayStat user;
+//     // createEmpty(&user);
+//     // puts("\n========================BARANG========================");
+
+//     // for(int i = 0; i < barang.len; ++i) {
+//     //     printf("{name: %s, price: %d}\n", barang.arr[i].name, barang.arr[i].price);
+//     // }
+
+//     // puts("\n=========================USER=========================");
+//     // for(int i = 0; i < user.len; ++i) {
+//     //     printf("User#%i:\n", i);
+//     //     User u = user.arr[i];
+//     //     printf("username: %s\n", u.name);
+//     //     printf("password: %s\n", u.password);
+//     //     printf("money: %d\n", u.money);
+//     //     puts("riwayat pembelian: ");
+//     //     Stack *temp = u.riwayat_pembelian;
+//     //     while(temp != NULL) {
+//     //         printf("- [total: %d, nama_barang: %s]\n",temp->data.harga_total, temp->data.nama_barang);
+//     //         temp = temp->link;
+//     //     }
+//     //     puts("wishlist: ");
+//     //     DoublyLinkedListNode *manig = u.wishlist;
+//     //     while (manig != NULL)
+//     //     {
+//     //         printf("- %s\n", manig->data);
+//     //         manig = manig->next;
+//     //     }
         
-    //     putchar('\n');
+//     //     putchar('\n');
 
-    // }
-    // ArrayDin barang;
-    // MakeEmptyArrayDin(&barang);
+//     // }
+//     // ArrayDin barang;
+//     // MakeEmptyArrayDin(&barang);
 
-    // startKata("sample.txt");
-    // int n = atoi(currentKata.buffer);
+//     // startKata("sample.txt");
+//     // int n = atoi(currentKata.buffer);
 
-    // printf("%d\n", n);
-    // while(n--) {
-    //     advKata();
-    //     int quantity = atoi(currentKata.buffer);
-    //     advKataMajemuk();
-    //     printf("%d %s\n", quantity, currentKata.buffer);
-    // }
+//     // printf("%d\n", n);
+//     // while(n--) {
+//     //     advKata();
+//     //     int quantity = atoi(currentKata.buffer);
+//     //     advKataMajemuk();
+//     //     printf("%d %s\n", quantity, currentKata.buffer);
+//     // }
 
-    // advKata();
-    // n = atoi(currentKata.buffer);
-    // printf("%d\n", n);
-    // while(n--) {
-    //     advKata();
-    //     int money = atoi(currentKata.buffer);
+//     // advKata();
+//     // n = atoi(currentKata.buffer);
+//     // printf("%d\n", n);
+//     // while(n--) {
+//     //     advKata();
+//     //     int money = atoi(currentKata.buffer);
 
-    //     advKata();
-    //     char uname[100];
-    //     strcpyHomemade(uname, currentKata.buffer);
+//     //     advKata();
+//     //     char uname[100];
+//     //     strcpyHomemade(uname, currentKata.buffer);
 
-    //     advKata();
-    //     char password[100];
-    //     strcpyHomemade(password, currentKata.buffer);
+//     //     advKata();
+//     //     char password[100];
+//     //     strcpyHomemade(password, currentKata.buffer);
 
-    //     printf("%d %s %s\n", money, uname, password);
+//     //     printf("%d %s %s\n", money, uname, password);
         
-    //     advKata();
-    //     int history_count = atoi(currentKata.buffer);
-    //     printf("%d\n", history_count);
-    //     while(history_count--) {
-    //         advKata();
-    //         int price = atoi(currentKata.buffer);
-    //         advKataMajemuk();
-    //         printf("%d %s\n", price, currentKata.buffer);
-    //     }
+//     //     advKata();
+//     //     int history_count = atoi(currentKata.buffer);
+//     //     printf("%d\n", history_count);
+//     //     while(history_count--) {
+//     //         advKata();
+//     //         int price = atoi(currentKata.buffer);
+//     //         advKataMajemuk();
+//     //         printf("%d %s\n", price, currentKata.buffer);
+//     //     }
 
-    //     advKata();
-    //     int wishlist_count = atoi(currentKata.buffer);
-    //     printf("%d\n", wishlist_count);
-    //     while(wishlist_count--) {
-    //         advKataMajemuk();
-    //         printf("%s\n", currentKata.buffer);
-    //     }
-    // }
-    // startKata(NULL);
-    // while(!endKata) {
-    //     for (int i = 0; i < currentKata.length; i++)
-    //     {
-    //         // puts("a");
-    //         printf("%c", currentKata.buffer[i]);
-    //         // puts("a");
-    //     }
-    //     printf("\n");
-    //     advKata();
-    // }
-}
+//     //     advKata();
+//     //     int wishlist_count = atoi(currentKata.buffer);
+//     //     printf("%d\n", wishlist_count);
+//     //     while(wishlist_count--) {
+//     //         advKataMajemuk();
+//     //         printf("%s\n", currentKata.buffer);
+//     //     }
+//     // }
+//     // startKata(NULL);
+//     // while(!endKata) {
+//     //     for (int i = 0; i < currentKata.length; i++)
+//     //     {
+//     //         // puts("a");
+//     //         printf("%c", currentKata.buffer[i]);
+//     //         // puts("a");
+//     //     }
+//     //     printf("\n");
+//     //     advKata();
+//     // }
+// }

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "boolean.h"
-#include "doublyLinkedList.h"
+#include "../boolean.h"
+#include "../adt/LinkedList/doublyLinkedList.h"
 
 void Wishlist_clear(DoublyLinkedList* list){
     createEmptyLinkedList(list);
@@ -13,7 +13,8 @@ void Wishlist_clear(DoublyLinkedList* list){
 
 
 // int main() {
-//     DoublyLinkedListNode* wishlist = NULL;
+//     DoublyLinkedList wishlist;
+//     createEmptyLinkedList(&wishlist);
 
 //     LinkedListInsertEnd(&wishlist, "Laptop");
 //     LinkedListInsertEnd(&wishlist, "Smartphone");
@@ -23,12 +24,12 @@ void Wishlist_clear(DoublyLinkedList* list){
 //     LinkedListInsertEnd(&wishlist, "Mouse");
 
 //     printf("\nCurrent wishlist:\n");
-//     printDoublyLinkedListNode(wishlist);
+//     printDoublyLinkedList(wishlist);
 
 //     Wishlist_clear(&wishlist);
 
 //     printf("\nCurrent wishlist:\n");
-//     printDoublyLinkedListNode(wishlist);
+//     printDoublyLinkedList(wishlist);
 
 //     return 0;
 // }

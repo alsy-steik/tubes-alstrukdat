@@ -1,5 +1,6 @@
 #include "doublyLinkedList.h"
 #include <stdio.h>
+#include "../../boolean.h"
 #include <stdlib.h>
 #include "../../util/util.h"
 
@@ -8,7 +9,7 @@ void createEmptyLinkedList(DoublyLinkedList* list) {
     list->head = NULL;
 }
 
-void LinkedListIsEmpty(DoublyLinkedList list) {
+boolean LinkedListIsEmpty(DoublyLinkedList list) {
     return !(list.head);
 }
 

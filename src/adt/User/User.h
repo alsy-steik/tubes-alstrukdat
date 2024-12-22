@@ -15,8 +15,8 @@ typedef struct user
     char password[MAX_USER_PASS];
     int money;
     Map keranjang;
-    Stack* riwayat_pembelian;
-    DoublyLinkedListNode* wishlist;
+    Stack riwayat_pembelian;
+    DoublyLinkedList wishlist;
 } User;
 
 typedef struct {

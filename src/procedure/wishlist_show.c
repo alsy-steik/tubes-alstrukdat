@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "boolean.h"
-#include "doublyLinkedList.h"
+#include "../boolean.h"
+#include "../adt/LinkedList/doublyLinkedList.h"
 
 void Wishlist_show(DoublyLinkedList list){
     printDoublyLinkedList(list);
 }
 
 // int main(){
-//     DoublyLinkedListNode* wishlist = NULL;
+//     DoublyLinkedList wishlist;
+//     createEmptyLinkedList(&wishlist);
 
 //     LinkedListInsertEnd(&wishlist, "Laptop");
 //     LinkedListInsertEnd(&wishlist, "Smartphone");

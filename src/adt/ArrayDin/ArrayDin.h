@@ -2,7 +2,6 @@
 #define ARRAY_DIN_H
 
 #include "../Barang/Barang.h"
-#include "../MesinKata/MesinKata.h"
 #include "../../util/util.h"
 
 #define INITIAL_ARRAY_DIN_SIZE 100
@@ -30,5 +29,7 @@ void ArrayDinDeleteElem(ArrayDin *a, int pos);
 void ArrayDinDeleteBeginning(ArrayDin *a);
 void ArrayDinDeleteEnd(ArrayDin *a);
 ArrayDin ArrayDinConcat(ArrayDin a1, ArrayDin a2);
+
+
 
 #endif

@@ -1,25 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "boolean.h"
-#include "doublyLinkedList.h"
-#include "MesinKarakter.h"
-#include "MesinKata.h"
-#include "Barang.h"
-#include "ArrayDin.h"
+#include "../boolean.h"
+#include "../adt/LinkedList/doublyLinkedList.h"
+#include "../adt/MesinKarakter/MesinKarakter.h"
+#include "../adt/MesinKata/MesinKata.h"
+#include "../adt/Barang/Barang.h"
+#include "../adt/ArrayDin/ArrayDin.h"
+
+void store_list(ArrayDin arr);
 
 boolean LinkedListSearch(DoublyLinkedList list, const char* string){
     while (list.head != NULL){
+        // puts(list.head->data);
         if (is_same_string(list.head->data, string)){
             return true;
         }
-        list.head = head->next;
+        // printf("ashvahsvavsb%d\n",list.head == NULL);
+        list.head = list.head->next;
     }
+
     return false;
 }
 
-boolean LinkedListEnd_ISS(DoublyLinkedListNode head, const char* string){
+boolean LinkedListEnd_ISS(DoublyLinkedList list, const char* string){
+    list.head;
     while (list.head->next != NULL){
-        list.head = head->next;
+        list.head = list.head->next;
     }
     return (is_same_string(list.head->data, string));
 }
@@ -32,7 +38,7 @@ void WishlistAdd(DoublyLinkedList* head, ArrayDin arr){
 
     boolean P = LinkedListSearch(*head, currentKata.buffer);
     if (P == true){
-        printf("%s sudah ada di wishlist!\n");
+        printf("%s sudah ada di wishlist!\n", currentKata.buffer);
     }
     /*Validasi apakah barang sudah ada pada wishlist*/
 
@@ -87,7 +93,8 @@ void WishlistAdd(DoublyLinkedList* head, ArrayDin arr){
 
 
 // int main() {
-//     DoublyLinkedListNode* wishlist = NULL;
+//     DoublyLinkedList wishlist;
+//     createEmptyLinkedList(&wishlist);
 
 //     ArrayDin inventory;
 //     MakeEmptyArrayDin(&inventory);
@@ -103,7 +110,7 @@ void WishlistAdd(DoublyLinkedList* head, ArrayDin arr){
 //     store_list(inventory);
 
 //     printf("\nCurrent wishlist:\n");
-//     printDoublyLinkedListNode(wishlist);
+//     printDoublyLinkedList(wishlist);
 
 //     printf("\n=== Add items to wishlist ===\n");
 //     WishlistAdd(&wishlist, inventory);
@@ -112,7 +119,7 @@ void WishlistAdd(DoublyLinkedList* head, ArrayDin arr){
 //     WishlistAdd(&wishlist, inventory);
 
 //     printf("\nCurrent wishlist:\n");
-//     printDoublyLinkedListNode(wishlist);
+//     printDoublyLinkedList(wishlist);
 
 //     return 0;
 // }
