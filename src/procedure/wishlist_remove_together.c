@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "boolean.h"
-#include "doublyLinkedList.h"
-#include "MesinKarakter.h"
-#include "MesinKata.h"
+#include "../boolean.h"
+#include "../adt/LinkedList/doublyLinkedList.h"
+#include "../adt/MesinKarakter/MesinKarakter.h"
+#include "../adt/MesinKata/MesinKata.h"
 
 // int NbElmt_list(DoublyLinkedListNode* head){
 //     int count = 0;
