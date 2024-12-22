@@ -6,6 +6,7 @@
 #include <time.h>
 #include <string.h>
 
+int IndeksUser;
 int main() {
 
     int pos = 0;
@@ -131,7 +132,82 @@ int main() {
             Quit(&user, &barang);
         } else if(is_same_string(currentKata.buffer, "HELP")){
             help(3);
-        } else {
+        } else if(is_same_string(currentKata.buffer, "WISHLIST")){
+            advKata();
+            if(!endKata) {
+                if(is_same_string(currentKata.buffer, "ADD")) {
+                    WishlistAdd(&(user.arr[IndeksUser].wishlist), barang)
+                } else if(is_same_string(currentKata.buffer, "SWAP")) {
+                    advKata();
+                    int n1 = -1;
+                    if(!endKata) n1 = atoi(currentKata.buffer);
+                    else {
+                        puts("Invalid arguments")
+                        continue;
+                    };
+
+                    advKata();
+                    int n2 = -1;
+                    if(!endKata) {
+                        n2 = atoi(currentKata.buffer);
+                        Wishlist_swap(&(user.arr[IndeksUser].wishlist), n1, n2);
+                    };
+                    else puts("Invalid arguments");
+                } else if(is_same_string(currentKata.buffer, "REMOVE")) {
+                    advKataMajemuk();
+                    int i = -1;
+                    int start = -1;
+                    bool found = false;
+                    while (currentKata[i] != '\0')
+                    {
+                        if(currentKata[i] == ' ') {
+                            found = true;
+                            continue;
+                        }
+
+                        if(found && currentKata[i] != ' ') {
+                            if(currentKata[i] == NEW_LINE) break;
+                            if(start == -1) start = i;
+                        }
+
+                        i++; 
+                    }
+
+                    
+                    
+                    if() {
+                        
+                    } else {
+                        
+                    }
+                } else if(is_same_string(currentKata.buffer, "CLEAR")) {
+                    Wishlist_clear(&(user.arr[IndeksUser].wishlist));
+                } else if(is_same_string(currentKata.buffer, "SHOW")) {
+                    Wishlist_show(user.arr->wishlist);
+                }
+            }
+        } else if(is_same_string(currentKata.buffer, "PROFILE")) {
+            showProfile();
+        } else if(is_same_string(currentKata.buffer, "CART")) {
+            advKata();
+            if(!endKata) {
+                if(is_same_string(currentKata.buffer, "SHOW")) {
+                    cartShow(&(user.arr[IndeksUser].keranjang),&barang);
+                } else if(is_same_string(currentKata.buffer, "PAY")) {
+                    // NOT YET IMPLEMENTED
+                } else if(is_same_string(currentKata.buffer, "REMOVE")) {
+                    advKata();
+                    char bahs[100];
+                    if(!endKata) {
+                        strcpyHomemade(bahs, currentKata.buffer);
+                    } else {
+                        puts("Missing arguments");
+                        continue;
+                    }
+                }
+            }
+        }
+        else {
             printf("%s : command not found", currentKata.buffer);
         }
     }

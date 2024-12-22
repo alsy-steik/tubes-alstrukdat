@@ -245,8 +245,6 @@ void PrintKata(Kata kata){
 }
 
 // int main() {
-
-
 //     ArrayDin barang;
 //     MakeEmptyArrayDin(&barang);
 

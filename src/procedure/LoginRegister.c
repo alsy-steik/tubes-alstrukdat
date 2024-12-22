@@ -5,7 +5,7 @@
 #include "../adt/User/User.h"
 
 ListUser USERS;
-int IndeksUser;
+extern int IndeksUser;
 
 
 // Function cek username ada di listuser
@@ -13,10 +13,10 @@ int UsernameAda(ListUser *USERS, const char *input){
     int Counter;
     for (Counter = 0; Counter < (*USERS).lengthEff; Counter++){
         if (is_same_string((*USERS).ElUser[Counter].name, input)){
-            return true;
+            return Counter;
         }
     }
-    return false;
+    return -1;
 }
 
 // Funtion cek password (sama kek is_same_string() tapi ini case sensitive)
@@ -51,7 +51,8 @@ void Login(){
     }
     Username[currentKata.length] = '\0';
 
-    if (!UsernameAda(&USERS, Username)){
+    int index = UsernameAda(&USERS, Username)
+    if (index == -1){
         printf("Username tidak ditemukan\n ");
         return;
     }
