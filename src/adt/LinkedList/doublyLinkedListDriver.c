@@ -3,17 +3,17 @@
 int main()
 {
     DoublyLinkedListNode *head = NULL;
-    LinkedListInsertBeginning(&head, "fakyumanig");
-    LinkedListInsertBeginning(&head, "nigga :D");
+    LinkedListInsertBeginning(&head, "Laptop");
+    LinkedListInsertBeginning(&head, "Mouse Gaming");
     printDoublyLinkedListNode(head);
 
     putchar('\n');
-    LinkedListInsertEnd(&head, "linggangguliguli");
-    LinkedListInsertEnd(&head, "WAZZZAAAA");
+    LinkedListInsertEnd(&head, "Beras Premium");
+    LinkedListInsertEnd(&head, "PERTALITE");
     printDoublyLinkedListNode(head);
     putchar('\n');
 
-    LinkedListInsertElem(&head, "diddy", 1);
+    LinkedListInsertElem(&head, "Jam Gadang", 1);
     printDoublyLinkedListNode(head);
     putchar('\n');
 
