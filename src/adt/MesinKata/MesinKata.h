@@ -26,6 +26,7 @@ void ignoreBlank();
 void startKata(const char* path);
 void startKataMajemuk(const char* path);
 void advKata();
+void advKataMajemuk();
 void salinKata();
 void salinKataMajemuk();
 int Uppercased_Char(int num);

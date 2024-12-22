@@ -21,6 +21,18 @@ void help(int menu) {
         printf("STORE REQUEST -> Untuk meminta penambahan barang\n");
         printf("STORE SUPPLY -> Untuk menambahkan barang dari permintaan\n");
         printf("STORE REMOVE -> Untuk menghapus barang\n");
+        printf("PROFILE -> Untuk melihat data diri pengguna (hanya saat login)\n");
+        printf("CART ADD <nama> <n> -> Untuk menambahkan barang ke keranjang belanja\n");
+        printf("CART REMOVE <nama> <n> -> Untuk mengurangi barang dari keranjang belanja\n");
+        printf("CART SHOW -> Untuk melihat isi keranjang belanja\n");
+        printf("CART PAY -> Untuk melakukan pembayaran keranjang belanja\n");
+        printf("HISTORY <n> -> Untuk melihat riwayat pembelian\n");
+        printf("WISHLIST ADD -> Untuk menambahkan barang ke wishlist\n");
+        printf("WISHLIST SWAP <i> <j> -> Untuk menukar posisi barang di wishlist\n");
+        printf("WISHLIST REMOVE <i> -> Untuk menghapus barang dari wishlist berdasarkan posisi\n");
+        printf("WISHLIST REMOVE -> Untuk menghapus barang dari wishlist berdasarkan nama\n");
+        printf("WISHLIST CLEAR -> Untuk mengosongkan seluruh isi wishlist\n");
+        printf("WISHLIST SHOW -> Untuk melihat barang-barang di wishlist\n");
         printf("LOGOUT -> Untuk keluar dari sesi\n");
         printf("SAVE -> Untuk menyimpan state ke dalam file\n");
         printf("QUIT -> Untuk keluar dari program\n");

@@ -16,7 +16,7 @@ void MapInsert(Map* map,const char* key, int value) {
     for(int i = 0; i < (map->count); ++i) {
         MapElType data = (map->data)[i];
         if(isStringEqual(data.nama_barang, key)) {
-            (map->data)[i].quantity = value;
+            (map->data)[i].quantity =+ value;
             return;
         }
     }

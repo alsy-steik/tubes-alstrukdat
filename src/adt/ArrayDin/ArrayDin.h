@@ -2,6 +2,9 @@
 #define ARRAY_DIN_H
 
 #include "../Barang/Barang.h"
+#include "../MesinKata/MesinKata.h"
+#include "../../util/util.h"
+
 #define INITIAL_ARRAY_DIN_SIZE 100
 
 typedef struct arraydin
@@ -18,6 +21,7 @@ int getArrayDinLength(ArrayDin arr);
 // I.S. : `a` tidak kosong, `pos` < `a.len`
 // F.S. : elemen pada `pos`
 Barang getArrayDinElmt(ArrayDin a, int pos);
+Barang getArrayDinElmtByName(ArrayDin a, const char* name);
 void setArrayDinElmnt(ArrayDin *a, Barang val, int pos);
 void ArrayDinInsert(ArrayDin *a, Barang val, int pos);
 void ArrayDinInsertBeginning(ArrayDin *a, Barang val);
