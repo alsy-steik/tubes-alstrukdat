@@ -34,8 +34,14 @@ void cartAdd(Map *cart, ArrayDin *arr) {
             }
 
             if (found != -1) {
-                MapInsert(cart, nama_barang, quantity);
-                printf("Berhasil menambahkan %d %s ke keranjang belanja!\n", quantity, nama_barang);
+                if (MapContains(*cart, nama_barang)) {
+                    int current_quantity = MapGetEl(*cart, nama_barang);
+                    MapInsert(cart, nama_barang, current_quantity + quantity);
+                    printf("Jumlah barang %s di keranjang bertambah menjadi %d.\n", nama_barang, current_quantity + quantity);
+                } else {
+                    MapInsert(cart, nama_barang, quantity);
+                    printf("Berhasil menambahkan %d %s ke keranjang belanja!\n", quantity, nama_barang);
+                }
             } else {
                 printf("Barang tidak ada di toko!\n");
             }
@@ -68,9 +74,14 @@ void cartRemove(Map *cart) {
                 int current_quantity = MapGetEl(*cart, nama_barang);
 
                 if (quantity <= current_quantity) {
-                    MapInsert(cart, nama_barang, current_quantity - quantity);
-                    // MapDelete(cart, nama_barang);
-                    printf("Berhasil mengurangi %d %s dari keranjang belanja!\n", quantity, nama_barang);
+                    int new_quantity = current_quantity - quantity;
+                    if (new_quantity == 0) {
+                        MapDelete(cart, nama_barang); // Hapus barang jika kuantitas menjadi 0
+                        printf("Berhasil mengurangi %d %s dari keranjang belanja!\n", quantity, nama_barang);
+                    } else {
+                        MapInsert(cart, nama_barang, new_quantity);
+                        printf("Berhasil mengurangi %d %s dari keranjang belanja!\n", quantity, nama_barang);
+                    }
                 } else {
                     printf("Tidak berhasil mengurangi, hanya terdapat %d %s pada keranjang!\n", current_quantity, nama_barang);
                 }
@@ -147,8 +158,14 @@ int main() {
 
     cartAdd(&cart, &arr);
 
+    cartAdd(&cart, &arr);
+
+    cartAdd(&cart, &arr);
+
     cartShow(&cart, &arr);
     
+    cartRemove(&cart);
+
     cartRemove(&cart);
 
     cartShow(&cart, &arr);

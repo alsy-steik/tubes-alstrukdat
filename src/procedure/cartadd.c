@@ -34,8 +34,14 @@ void cartAdd(Map *cart, ArrayDin *arr) {
             }
 
             if (found != -1) {
-                MapInsert(cart, nama_barang, quantity);
-                printf("Berhasil menambahkan %d %s ke keranjang belanja!\n", quantity, nama_barang);
+                if (MapContains(*cart, nama_barang)) {
+                    int current_quantity = MapGetEl(*cart, nama_barang);
+                    MapInsert(cart, nama_barang, current_quantity + quantity);
+                    printf("Jumlah barang %s di keranjang bertambah menjadi %d.\n", nama_barang, current_quantity + quantity);
+                } else {
+                    MapInsert(cart, nama_barang, quantity);
+                    printf("Berhasil menambahkan %d %s ke keranjang belanja!\n", quantity, nama_barang);
+                }
             } else {
                 printf("Barang tidak ada di toko!\n");
             }
