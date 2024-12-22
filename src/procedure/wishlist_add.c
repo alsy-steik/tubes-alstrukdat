@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "boolean.h"
-#include "doublyLinkedList.h"
-#include "MesinKarakter.h"
-#include "MesinKata.h"
-#include "Barang.h"
-#include "ArrayDin.h"
+#include "../boolean.h"
+#include "../adt/LinkedList/doublyLinkedList.h"
+#include "../adt/MesinKarakter/MesinKarakter.h"
+#include "../adt/MesinKata/MesinKata.h"
+#include "../adt/Barang/Barang.h"
+#include "../adt/ArrayDin/ArrayDin.h"
 
 boolean LinkedListSearch(DoublyLinkedList list, const char* string){
     while (list.head != NULL){
