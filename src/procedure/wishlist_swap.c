@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "boolean.h"
-#include "doublyLinkedList.h"
+#include "../boolean.h"
+#include "../adt/LinkedList/doublyLinkedList.h"
 
 // int NbElmt_list(DoublyLinkedListNode* head){
 //     int count = 0;
