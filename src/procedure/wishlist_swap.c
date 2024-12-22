@@ -3,14 +3,14 @@
 #include "boolean.h"
 #include "doublyLinkedList.h"
 
-int NbElmt_list(DoublyLinkedListNode* head){
-    int count = 0;
-    while (head != NULL){
-        count++;
-        head = head->next;
-    }
-    return count;
-}
+// int NbElmt_list(DoublyLinkedListNode* head){
+//     int count = 0;
+//     while (head != NULL){
+//         count++;
+//         head = head->next;
+//     }
+//     return count;
+// }
 
 int absolute(int a){
     if (a >= 0){
