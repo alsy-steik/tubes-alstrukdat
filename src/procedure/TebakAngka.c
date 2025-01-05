@@ -22,9 +22,9 @@ void TebakAngka() {
     }
 
     if(correct) {
-        printf("Tebakanmu benar! +%d rupiah telah ditambahkan ke akun anda.", chance * 50);
+        printf("Tebakanmu benar! +%d rupiah telah ditambahkan ke akun anda.\n", chance * 50);
     } else {
-        printf("gagal akskajksjakjskwjskwjksjw");
+        printf("gagal akskajksjakjskwjskwjksjw\n");
     }
 }
 

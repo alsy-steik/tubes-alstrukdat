@@ -1,21 +1,22 @@
 #include <stdio.h>
 #include "../adt/User/User.h"
+#include "../adt/ArrayStat/ArrayStat.h"
 
-extern ListUser USERS;         
-extern int indeksUser; 
+extern ArrayStat user;         
+extern int IndeksUser; 
 
 void showProfile(){
     // Debug List Jaga2
     // int Counter;
-    if (USERS.lengthEff == 0){
+    if (user.len == 0){
         printf("Belum ada pengguna yang terdaftar ᓀ‸ᓂ\n");
         return;
     }
     // End
     else {
         printf("=====================================\n");  
-        printf("User %s's Details:\n", USERS.ElUser[indeksUser].name);
-        printf("  Saldo : %d\n", USERS.ElUser[indeksUser].money);
+        printf("User %s's Details:\n", user.arr[IndeksUser].name);
+        printf("  Saldo : %d\n", user.arr[IndeksUser].money);
         printf("=====================================\n");
         return;
     }

@@ -1,25 +1,26 @@
 #include <stdio.h>
 #include "../adt/Stack/stack.h"
-#include "User.h"
+#include "../adt/User/User.h"
 #include "../util/util.h"
 #include "../adt/MesinKata/MesinKata.h"
 #include "../adt/ArrayDin/ArrayDin.h"
 #include "../adt/SetMap/setmap.h"
 #include "../adt/Barang/Barang.h"
 
-extern ListUser USERS;
+extern ArrayStat user;
 extern int IndeksUser;
-int total_biaya;
-Map cart;
-ArrayDin arr;
 
-void showCart(){
+void Pay(int total_biaya);
 
+void showCart(ArrayDin arr)
+{
+    Map cart = user.arr[IndeksUser].keranjang;
     if (cart.count == 0){
         printf("Keranjang kamu kosong!\n");
     }
     else {
         int Counter;
+        int total_biaya = 0;
         printf("Berikut adalah isi keranjangmu.\n");
         printf("Kuantitas  Nama    Total\n");
         for (Counter = 0; Counter < cart.count; Counter++){
@@ -34,24 +35,24 @@ void showCart(){
             printf("%d          %s    %d\n", quantity, barangtemp, total);
         }
         printf("Total biaya yang harus dikeluarkan adalah %d, apakah jadi dibeli?\n", total_biaya);
-        Pay();
+        Pay(total_biaya);
     }
     return;
 }
 
-void Pay(){
+void Pay(int total_biaya){
     int HasilTemp = 0;
     // int Counter = 0;
     printf("Ya/Tidak : ");
     startKata(NULL);
     if (is_same_string(currentKata.buffer, "Ya")){
-        HasilTemp = USERS.ElUser[IndeksUser].money - total_biaya;
+        HasilTemp = user.arr[IndeksUser].money - total_biaya;
         // 3 - 4 = -1
         if (HasilTemp < 0){
-            printf("Uangmu kurang %d bro, Balik lagi kalau uangmu cukup ya :3c\n", total_biaya - USERS.ElUser[IndeksUser].money);
+            printf("Uangmu kurang %d bro, Balik lagi kalau uangmu cukup ya :3c\n", total_biaya - user.arr[IndeksUser].money);
         }
         else {
-            USERS.ElUser[IndeksUser].money = USERS.ElUser[IndeksUser].money - total_biaya;
+            user.arr[IndeksUser].money = user.arr[IndeksUser].money - total_biaya;
             printf("Barang-barang sudah terbeli :D\n");
         }
         return;
@@ -65,6 +66,7 @@ void Pay(){
     }
 
 }
+
 
 // int main(){
 //     User user1 = createUser("Atma","wwww",50000);

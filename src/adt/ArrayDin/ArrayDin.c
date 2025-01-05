@@ -1,4 +1,5 @@
 #include "ArrayDin.h"
+#include "../../util/util.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -91,6 +92,10 @@ void ArrayDinDeleteElem(ArrayDin *a, int pos)
         a->size /= 2;
         a->arr = realloc(a->arr, sizeof(Barang) * a->size);
     }
+
+    // for(int i = 0; i < a->len; ++i) {
+    //     printf("%d. %s\n", i + 1, a->arr[i].name);
+    // }
 }
 
 void ArrayDinDeleteBeginning(ArrayDin *a)

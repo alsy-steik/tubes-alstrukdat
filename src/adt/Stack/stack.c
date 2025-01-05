@@ -8,7 +8,7 @@ void StackInitEmpty(Stack *st) {
     st->top = NULL;
 }
 
-int isEmpty(Stack st) {
+int StackisEmpty(Stack st) {
     return !(st.len);
 }
 
@@ -17,16 +17,18 @@ void push(Stack* stack, StackElType el) {
 }
 
 void pushNT(Stack* stack, const char* nama_barang, int total_harga) {
-    StackNode* new_node = (StackNode* ) malloc(sizeof(Stack));
+    // printf("STACK|%s %d|\n", nama_barang, total_harga);
+    StackNode* new_node = (StackNode* ) malloc(sizeof(StackNode));
     (new_node->data).harga_total = total_harga;
     strcpyHomemade((new_node->data).nama_barang, nama_barang);
+    // printf("%s|\n", (new_node->data).nama_barang);
     new_node->link = stack->top;
     stack->top = new_node;
     (stack->len)++;
 }
 
 void pop(Stack* stack) {
-    if(isEmpty(*stack)) return;
+    if(StackisEmpty(*stack)) return;
     StackNode* temp_head = stack->top;
     stack->top = temp_head->link;
     free(temp_head);
@@ -34,7 +36,7 @@ void pop(Stack* stack) {
 }
 
 StackElType top(Stack stack) {
-    if(isEmpty(stack)) {
+    if(StackisEmpty(stack)) {
         printf("ga ada nbri");
         StackElement st;
         st.harga_total = -1;

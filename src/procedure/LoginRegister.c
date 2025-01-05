@@ -2,17 +2,19 @@
 #include "../boolean.h"
 #include "../adt/MesinKata/MesinKata.h"
 #include "../adt/MesinKarakter/MesinKarakter.h"
+#include "../adt/ArrayStat/ArrayStat.h"
 #include "../adt/User/User.h"
+#include "../util/util.h"
 
-ListUser USERS;
+extern ArrayStat user;
 extern int IndeksUser;
 
 
 // Function cek username ada di listuser
-int UsernameAda(ListUser *USERS, const char *input){
+int UsernameAda(ArrayStat USERS, const char *input){
     int Counter;
-    for (Counter = 0; Counter < (*USERS).lengthEff; Counter++){
-        if (is_same_string((*USERS).ElUser[Counter].name, input)){
+    for (Counter = 0; Counter < USERS.len; Counter++){
+        if (is_same_string(USERS.arr[Counter].name, input)){
             return Counter;
         }
     }
@@ -32,7 +34,7 @@ boolean is_same_string_password(const char str1[], const char str2[]){
 }
 
 // Function login
-void Login(){
+boolean Login(){
     char Username[MAX_USER_NAME];
     char Password[MAX_USER_PASS];
     int CurrentindeksUser;
@@ -40,7 +42,7 @@ void Login(){
 
     if (IndeksUser != -1){
         printf("Anda masil terlogin, logout dulu bosqu\n");
-        return;
+        return false;
     }
 
     printf("== Login ==\n");
@@ -51,14 +53,14 @@ void Login(){
     }
     Username[currentKata.length] = '\0';
 
-    int index = UsernameAda(&USERS, Username)
+    int index = UsernameAda(user, Username);
     if (index == -1){
-        printf("Username tidak ditemukan\n ");
-        return;
+        printf("Username tidak ditemukan\n");
+        return false;
     }
 
-    for (Counter = 0; Counter < USERS.lengthEff; Counter++){
-        if (is_same_string(USERS.ElUser[Counter].name, Username)){
+    for (Counter = 0; Counter < user.len; Counter++){
+        if (is_same_string(user.arr[Counter].name, Username)){
             CurrentindeksUser = Counter;
         }
     }
@@ -71,21 +73,21 @@ void Login(){
         }
     Password[currentKata.length] = '\0';
 
-    if (is_same_string_password(USERS.ElUser[CurrentindeksUser].password,Password)){
+    if (is_same_string_password(user.arr[CurrentindeksUser].password,Password)){
         IndeksUser = CurrentindeksUser;
         printf("Login berhasil, Selamat Datang Kembali, %s\n", Username);
-        return;
+        return true;
         
     }
     else {
         printf("Password salah\n");
-        return;
+        return false;
     }
 
 }
 
 // Function register
-void Register(){
+boolean Register(){
     char Username[MAX_USER_NAME];
     char Password[MAX_USER_PASS];
     int Money = 1000;
@@ -101,9 +103,9 @@ void Register(){
     }
     Username[currentKata.length] = '\0';
 
-    if (UsernameAda(&USERS, currentKata.buffer)){
-        printf("Username sudah terdaftar, buat username lain\n ");
-        return;
+    if (UsernameAda(user, currentKata.buffer) != -1){
+        printf("Username sudah terdaftar, buat username lain\n");
+        return false;
     }
 
     printf("Masukkan Password: ");
@@ -120,7 +122,8 @@ void Register(){
     Password[currentKata.length] = '\0';
 
     userBaru = createUser(Username, Password, Money);
-    addUser(&USERS, userBaru);
+    insertEnd(&user, userBaru);
 
     printf("Registrasi berhasil dan Username didaftarkan ke sistem!\n");
+    return true;
 }

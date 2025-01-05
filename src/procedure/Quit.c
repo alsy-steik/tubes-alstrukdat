@@ -13,7 +13,9 @@ void Quit(ArrayStat* user, ArrayDin* barang)
         if (cc == 'Y' || cc == 'y')
         {
             printf("Nama save file: ");
+            adv();
             startKata(NULL);
+            // printf("%s|", currentKata.buffer);
             while (endKata)
             {
                 puts("Please specify filename!");
@@ -23,13 +25,16 @@ void Quit(ArrayStat* user, ArrayDin* barang)
 
             saveFile(currentKata.buffer, user, barang);
 
-            cc = 'n';
+            puts("Kamu keluar dari PURRMART.");
+            puts("Dadah ^_^/");
+            return;
         }
 
         else if (cc = 'N' || cc == 'n')
         {
             puts("Kamu keluar dari PURRMART.");
             puts("Dadah ^_^/");
+            return;
         }
     }
 }

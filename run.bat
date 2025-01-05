@@ -1,0 +1,1 @@
+gcc -o main.exe src/main.c src/adt/ArrayDin/ArrayDin.c src/adt/ArrayStat/ArrayStat.c src/adt/Barang/Barang.c src/adt/LinkedList/doublyLinkedList.c src/adt/MesinKarakter/MesinKarakter.c src/adt/MesinKata/MesinKata.c src/adt/Queue/Queue.c src/adt/SetMap/setmap.c src/adt/Stack/stack.c src/adt/User/User.c src/util/util.c src/procedure/*.c

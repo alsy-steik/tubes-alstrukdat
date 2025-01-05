@@ -22,6 +22,7 @@ boolean start(const char* path) {
 void adv() {
     // puts("asbhab");
     cc = getc(pita);
+    // putchar(cc);
     // printf("%c %d\n", cc,((int)cc));
     // puts("cb");
     eop = cc == EOF;

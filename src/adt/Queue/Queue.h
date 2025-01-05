@@ -14,6 +14,7 @@ void initQueue(Queue *q);
 boolean isEmpty(Queue q);
 void enqueue(Queue *q, const char *nama_barang);
 void dequeue(Queue *q);
+boolean contains(Queue q, const char *search);
 char *front(Queue q);
 
 #endif

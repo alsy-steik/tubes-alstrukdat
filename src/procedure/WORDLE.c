@@ -1,7 +1,7 @@
+#include "../adt/MesinKata/MesinKata.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
 
 int money = 10000;
 
@@ -57,16 +57,16 @@ void W0RDL3() {
         int tebakanValid = 0;
         while (tebakanValid == 0) {
             printf("Masukan kata tebakan Anda: ");
-            scanf("%s", tebak);
+            startKata(NULL);
             
             tebakanValid = 1;
             for (int i = 0; i < panjangkata; i++) {
-                if (tebak[i] == '\0') {
+                if (currentKata.buffer[i] == '\0') {
                     tebakanValid = 0; // Kurang dari 5 huruf
                     break;
                 }
             }
-            if (tebak[panjangkata] != '\0') {
+            if (currentKata.buffer[panjangkata] != '\0') {
                 tebakanValid = 0; // Lebih dari 5 huruf
             }
         }
@@ -76,17 +76,17 @@ void W0RDL3() {
         
         
         for (int i = 0; i < panjangkata; i++) {
-            guess[0][try][i] = tebak[i];
+            guess[0][try][i] = currentKata.buffer[i];
             //anggep salah semua, tambah %
             guess[1][try][i] ='%';
             //kalo ada hurufnya tambah *
             for (int j = 0; j < panjangkata; j++) {
-                if (tebak[i] == answer[j]) {
+                if (currentKata.buffer[i] == answer[j]) {
                     guess[1][try][i] = '*';
                 }
             }
             //kalo hurufnya bener tempat hilangin
-            if (tebak[i] == answer[i]) {
+            if (currentKata.buffer[i] == answer[i]) {
                 guess[1][try][i] =' ';
             }
         }

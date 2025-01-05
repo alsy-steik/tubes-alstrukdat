@@ -8,7 +8,7 @@
 extern char cc;
 extern char eop;
 
-boolean start();
+boolean start(const char *path);
 void adv();
 void close();
 #endif

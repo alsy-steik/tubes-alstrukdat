@@ -6,10 +6,11 @@
 #include "../adt/Barang/barang.h"
 #include "../adt/MesinKarakter/MesinKarakter.h"
 #include "../adt/MesinKata/MesinKata.h"
+#include "../util/util.h"
 
 /*----------------------------------------------------DIVIDER-----------------------------------------------------------*/
 
-void StoreSupply(ArrayDin arr, Queue* requestQueue){
+void StoreSupply(ArrayDin* arr, Queue* requestQueue){
     
     if (!isEmpty(*requestQueue)){
         char* queue_front = front(*requestQueue);
@@ -35,20 +36,23 @@ void StoreSupply(ArrayDin arr, Queue* requestQueue){
             /*------------------------------------------------------DIVIDER--------------------------------------------------------*/
 
             Barang BarangBaru = createBarang(queue_front, inputHarga);
-            ArrayDinInsertEnd(&arr, BarangBaru); 
+            ArrayDinInsertEnd(arr, BarangBaru); 
             dequeue(requestQueue);
+
+            printf("%s dengan harga %d telah ditambahkan ke toko.\n", queue_front, inputHarga);
         }
 
             /*------------------------------------------------------DIVIDER--------------------------------------------------------*/
 
         else if (is_same_string(currentKata.buffer, "Tunda")){
             enqueue(requestQueue, queue_front);
-            printf("%s dikembalikan ke antrean", queue_front);
+            printf("%s dikembalikan ke antrean\n", queue_front);
             dequeue(requestQueue);
         }
 
         else if (is_same_string(currentKata.buffer, "Tolak")){
             dequeue(requestQueue);
+            printf("%s dihapuskan dari antrian.\n", queue_front);
         }
     }
 }

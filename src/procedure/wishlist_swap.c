@@ -94,6 +94,8 @@ void Wishlist_swap(DoublyLinkedList* list, int a, int b){
         if (a == 1){
             list->head = P2;
         }
+
+        printf("Berhasil menukar posisi %s dengan %s pada wishlist!\n", P1->data, P2->data);
     }
 }
 

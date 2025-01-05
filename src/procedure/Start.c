@@ -20,7 +20,7 @@ void remove_newline(char *str) {
 
 
 boolean START(ArrayStat* pengguna, ArrayDin* barang){
-  return Load("config/default.txt", pengguna, barang);
+  return Load(NULL, pengguna, barang);
   // FILE *file;
   // int N;
   // int M;

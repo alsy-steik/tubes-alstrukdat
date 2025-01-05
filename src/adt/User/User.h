@@ -29,6 +29,6 @@ void setPassword(User *user, const char *password);
 // set be lgsung njir sbnernya mah
 void setMoney(User *user, int money);
 User createUser(const char *name, const char *password, int money);
-void addUser(ListUser *LUser, User u);
+// void addUser(ArrayStat *LUser, User u);
 
 #endif

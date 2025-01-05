@@ -1,5 +1,9 @@
 #include "User.h"
 #include "../../util/util.h"
+#include "../Stack/stack.h"
+#include "../LinkedList/doublyLinkedList.h"
+#include "../SetMap/setmap.h"
+#include "../ArrayStat/ArrayStat.h"
 
 void setName(User* user, const char* name) {
     int i = 0;
@@ -31,13 +35,17 @@ User createUser(const char* name, const char* password, int money) {
     setName(&new_user, name);
     setPassword(&new_user, password);
     setMoney(&new_user, money);
+    MapCreateEmpty(&(new_user.keranjang));
+    StackInitEmpty(&(new_user.riwayat_pembelian));
+    createEmptyLinkedList(&(new_user.wishlist));
     return new_user;
 }
 
-void addUser(ListUser *LUser, User u){
-    if ((*LUser).lengthEff < MAX_USERS){
-        (*LUser).ElUser[(*LUser).lengthEff] = u;
-        (*LUser).lengthEff++;
-    }
-}
+// void addUser(ArrayStat *LUser, User u){
+//     insertEnd(LUser, u);
+//     // if ((*LUser).lengthEff < MAX_USERS){
+//     //     (*LUser).ElUser[(*LUser).lengthEff] = u;
+//     //     (*LUser).lengthEff++;
+//     // }
+// }
 

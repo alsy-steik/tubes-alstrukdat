@@ -4,6 +4,7 @@
 #include "../adt/LinkedList/doublyLinkedList.h"
 #include "../adt/MesinKarakter/MesinKarakter.h"
 #include "../adt/MesinKata/MesinKata.h"
+#include "../util/util.h"
 
 // int NbElmt_list(DoublyLinkedListNode* head){
 //     int count = 0;

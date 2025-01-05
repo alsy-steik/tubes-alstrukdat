@@ -1,18 +1,19 @@
 #include <stdio.h>
 #include "../boolean.h"
 #include "../adt/User/User.h"
+#include "../adt/ArrayStat/ArrayStat.h"
 
-extern ListUser USERS;         
-extern int indeksUser;    
+extern ArrayStat user;         
+extern int IndeksUser;    
 
 void Logout() {
     // cek pengguna yang sedang login
-    if (indeksUser != -1) {
+    if (IndeksUser != -1) {
         printf("%s telah logout dari sistem PURRMART. Silakan REGISTER/LOGIN kembali untuk melanjutkan.\n", 
-               USERS.ElUser[indeksUser].name);
+               user.arr[IndeksUser].name);
 
         // reset indeks user yang login
-        indeksUser = -1; 
+        IndeksUser = -1; 
     } else {
         printf("Tidak ada pengguna yang sedang login.\n");
     }

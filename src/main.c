@@ -4,9 +4,11 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
-#include <string.h>
+// #include <string.h>
 
 int IndeksUser;
+ArrayStat user;
+
 int main() {
 
     int pos = 0;
@@ -18,7 +20,6 @@ int main() {
 
     boolean valid = false;
 
-    ArrayStat user;
     createEmpty(&user);
 
     ArrayDin barang;
@@ -44,20 +45,31 @@ int main() {
                 continue;
             }
 
-            char path[100] = "save/";
-            strcat(path, currentKata.buffer);   
-
-            valid = Load(path, &user, &barang);
+            valid = Load(currentKata.buffer, &user, &barang);
             if(!valid) {
                 printf("File '%s' not found.\n", currentKata.buffer);
             }
         } else if(is_same_string(currentKata.buffer, "HELP")) {
             help(1);
         } else {
-            printf("%s : command not found");
+            printf("%s : command not found\n");
         }
     }
 
+    // DEBUG
+    // for(int i = 0; i < user.len; ++i) {
+    //     printf("%s %s %d\n", user.arr[i].name, user.arr[i].password, user.arr[i].money);
+    // }
+
+    // StackNode* bjir = user.arr[0].riwayat_pembelian.top;
+    // printf("%d\n", user.arr[0].riwayat_pembelian.len);
+    // while(bjir != NULL) {
+    //     printf("%s %d\n", bjir->data.nama_barang, bjir->data.harga_total);
+    //     bjir = bjir->link;
+    // }
+
+notLoggedIn:
+    IndeksUser = -1;
     valid = false;
     while(!valid) {
         printf(">> ");
@@ -66,15 +78,15 @@ int main() {
         if(is_same_string(currentKata.buffer, "LOGIN")) {
             valid = Login();
         } else if(is_same_string(currentKata.buffer, "REGISTER")) {
-            valid = Register();
+            Register();
         } else if (is_same_string(currentKata.buffer, "HELP")) {
-            help(pos);
+            help(2);
         } else {
-            printf("%s : command not found");
+            printf("%s : command not found\n", currentKata.buffer);
         }
     }
 
-    pos = 2;
+    pos = 3;
     valid = false;
 
     while(!valid) {
@@ -83,6 +95,7 @@ int main() {
 
         if(is_same_string(currentKata.buffer, "LOGOUT")) {
             Logout();
+            goto notLoggedIn;
         }
 
         else if(is_same_string(currentKata.buffer, "WORK")) {
@@ -93,8 +106,9 @@ int main() {
                 } else {
                     printf("???: NOT FOUND");
                 }
+            } else {
+                Work();
             }
-            Work();
         }
 
         else if(is_same_string(currentKata.buffer, "STORE")) {
@@ -103,19 +117,19 @@ int main() {
                 if(is_same_string(currentKata.buffer, "LIST")) {
                     store_list(barang);
                 }
-                if(is_same_string(currentKata.buffer, "REQUEST")) {
+                else if(is_same_string(currentKata.buffer, "REQUEST")) {
                     StoreRequest(barang, &request);
                 }
-                if(is_same_string(currentKata.buffer, "SUPPLY")) {
-                    StoreSupply(barang, request);
+                else if(is_same_string(currentKata.buffer, "SUPPLY")) {
+                    StoreSupply(&barang, &request);
                 }
-                if(is_same_string(currentKata.buffer, "REMOVE")) {
+                else if(is_same_string(currentKata.buffer, "REMOVE")) {
                     store_remove(&barang);
                 } else {
-                    printf("STORE %s : command not found", currentKata.buffer);
+                    printf("STORE %s : command not found\n", currentKata.buffer);
                 }
             } else {
-                printf("%s : command not found", currentKata.buffer);
+                printf("%s : command not found\n", currentKata.buffer);
             }
         }
 
@@ -130,85 +144,132 @@ int main() {
             }
         } else if(is_same_string(currentKata.buffer, "QUIT")) {
             Quit(&user, &barang);
+            return 0;
         } else if(is_same_string(currentKata.buffer, "HELP")){
             help(3);
         } else if(is_same_string(currentKata.buffer, "WISHLIST")){
             advKata();
             if(!endKata) {
                 if(is_same_string(currentKata.buffer, "ADD")) {
-                    WishlistAdd(&(user.arr[IndeksUser].wishlist), barang)
+                    WishlistAdd(&(user.arr[IndeksUser].wishlist), barang);
                 } else if(is_same_string(currentKata.buffer, "SWAP")) {
+                    
                     advKata();
-                    int n1 = -1;
-                    if(!endKata) n1 = atoi(currentKata.buffer);
-                    else {
-                        puts("Invalid arguments")
-                        continue;
-                    };
-
-                    advKata();
-                    int n2 = -1;
-                    if(!endKata) {
-                        n2 = atoi(currentKata.buffer);
-                        Wishlist_swap(&(user.arr[IndeksUser].wishlist), n1, n2);
-                    };
-                    else puts("Invalid arguments");
-                } else if(is_same_string(currentKata.buffer, "REMOVE")) {
-                    advKataMajemuk();
-                    int i = -1;
-                    int start = -1;
-                    bool found = false;
-                    while (currentKata[i] != '\0')
-                    {
-                        if(currentKata[i] == ' ') {
-                            found = true;
-                            continue;
-                        }
-
-                        if(found && currentKata[i] != ' ') {
-                            if(currentKata[i] == NEW_LINE) break;
-                            if(start == -1) start = i;
-                        }
-
-                        i++; 
+                    int num1;
+                    if(endKata) {
+                        puts("Missing arguments.");
+                    } else {
+                        num1 = atoi(currentKata.buffer);
                     }
 
-                    
-                    
-                    if() {
-                        
+                    advKata();
+                    int num2;
+                    if(endKata) {
+                        puts("Missing an argument.");
                     } else {
-                        
+                        num2 = atoi(currentKata.buffer);
+                    }
+
+                    Wishlist_swap(&(user.arr[IndeksUser].wishlist), num1, num2);
+                } else if(is_same_string(currentKata.buffer, "REMOVE")) {
+                    advKata();
+                    if(endKata) {
+                        Wishlist_remove(&(user.arr[IndeksUser].wishlist));
+                    } else {
+                        Wishlist_remove_i(&(user.arr[IndeksUser].wishlist), atoi(currentKata.buffer));
                     }
                 } else if(is_same_string(currentKata.buffer, "CLEAR")) {
                     Wishlist_clear(&(user.arr[IndeksUser].wishlist));
                 } else if(is_same_string(currentKata.buffer, "SHOW")) {
-                    Wishlist_show(user.arr->wishlist);
+                    Wishlist_show(user.arr[IndeksUser].wishlist);
                 }
+            } else {
+                puts("WISHLIST : command not found");
             }
         } else if(is_same_string(currentKata.buffer, "PROFILE")) {
             showProfile();
         } else if(is_same_string(currentKata.buffer, "CART")) {
             advKata();
             if(!endKata) {
-                if(is_same_string(currentKata.buffer, "SHOW")) {
-                    cartShow(&(user.arr[IndeksUser].keranjang),&barang);
-                } else if(is_same_string(currentKata.buffer, "PAY")) {
-                    // NOT YET IMPLEMENTED
-                } else if(is_same_string(currentKata.buffer, "REMOVE")) {
-                    advKata();
-                    char bahs[100];
-                    if(!endKata) {
-                        strcpyHomemade(bahs, currentKata.buffer);
+                if (is_same_string(currentKata.buffer, "ADD")) {
+                    advKataMajemuk();
+                    int i = 0;
+                    int last_space = -1;
+                    puts(currentKata.buffer);
+                    while(currentKata.buffer[i] != 0) {
+                        if(currentKata.buffer[i] == ' ') last_space = i;
+                        ++i;
+                    }
+                    
+                    if(last_space == -1) {
+                        puts("Missing Arguments");
                     } else {
-                        puts("Missing arguments");
-                        continue;
+                        int quantity = atoi(currentKata.buffer + last_space + 1);
+                        if(quantity == 0) {
+                            puts("Invalid quantity");
+                        } else {
+                            currentKata.buffer[last_space] ='\0';
+                            cartAdd(
+                                &(user.arr[IndeksUser].keranjang),
+                                &(barang),
+                                currentKata.buffer,
+                                quantity
+                            );
+                        }
+                    }
+
+
+                }
+                else if (is_same_string(currentKata.buffer, "SHOW"))
+                {
+                    cartShow(&(user.arr[IndeksUser].keranjang), &barang);
+                } else if(is_same_string(currentKata.buffer, "PAY")) {
+                    showCart(barang);
+                } else if(is_same_string(currentKata.buffer, "REMOVE")) {
+                    advKataMajemuk();
+                    int i = 0;
+                    int last_space = -1;
+                    puts(currentKata.buffer);
+                    while (currentKata.buffer[i] != 0)
+                    {
+                        if (currentKata.buffer[i] == ' ')
+                            last_space = i;
+                        ++i;
+                    }
+
+                    if (last_space == -1)
+                    {
+                        puts("Missing Arguments");
+                    }
+                    else
+                    {
+                        int quantity = atoi(currentKata.buffer + last_space + 1);
+                        if (quantity == 0)
+                        {
+                            puts("Invalid quantity");
+                        }
+                        else
+                        {
+                            currentKata.buffer[last_space] = '\0';
+                            cartRemove(
+                                &(user.arr[IndeksUser].keranjang),
+                                currentKata.buffer,
+                                quantity
+                            );
+                        }
                     }
                 }
             }
+        } else if(is_same_string(currentKata.buffer, "HISTORY")) {
+            advKata();
+            if(endKata) {
+                puts("Missing an argument. Try again.");
+            } else {
+                showHistory(user.arr[IndeksUser].riwayat_pembelian, atoi(currentKata.buffer));
+            }
         }
         else {
-            printf("%s : command not found", currentKata.buffer);
+            printf("%s : command not found\n", currentKata.buffer);
         }
     }
 }

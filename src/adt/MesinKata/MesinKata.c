@@ -1,9 +1,14 @@
 #include "MesinKata.h"
+#include "../Stack/stack.h"
+#include "../SetMap/setmap.h"
+#include "../LinkedList/doublyLinkedList.h"
 #include "../../util/util.h"
+
 
 void loadRiwayatPembelianUser(User* user);
 
 boolean endKata;
+boolean isStdin;
 Kata currentKata;
 
 void ignoreBlank() {
@@ -14,6 +19,7 @@ void ignoreBlank() {
 }
 
 void startKata(const char* path) {
+    isStdin = path == NULL;
     start(path);
     ignoreBlank();
     if(cc == MARK) {
@@ -25,7 +31,9 @@ void startKata(const char* path) {
 }
 
 void startKataMajemuk(const char* path) {
+    isStdin = path == NULL;
     start(path);
+
     ignoreBlank();
     if(cc == EOF) {
         endKata = true;
@@ -37,7 +45,7 @@ void startKataMajemuk(const char* path) {
 
 void advKata() {
     ignoreBlank();
-    if(cc == EOF) {
+    if((!isStdin && cc == EOF) || (isStdin && cc == EOL)) {
         endKata = true;
     } else {
         endKata = false;
@@ -47,9 +55,12 @@ void advKata() {
 
 void advKataMajemuk() {
     ignoreBlank();
-    if(cc == EOF) {
+    if ((!isStdin && cc == EOF) || (isStdin && cc == EOL))
+    {
         endKata = true;
-    } else {
+    }
+    else
+    {
         endKata = false;
         salinKataMajemuk();
     }
@@ -65,8 +76,9 @@ void salinKata() {
         ++i;
     }
 
-    // reset the current character, so we could read from the next line
-    if(cc == EOL) cc = BLANK;
+
+    // incase we read from a file, reset the current character, so we could read from the next line
+    if(cc == EOL && !isStdin) cc = BLANK;
 
     currentKata.buffer[i] = '\0';
     currentKata.length = i;
@@ -79,12 +91,12 @@ void salinKataMajemuk() {
         adv();
         ++i;
     }
-    cc = BLANK;
+    if(!isStdin) cc = BLANK;
     currentKata.buffer[i] = '\0';
     currentKata.length = i;
 }
 
-int getNum() {
+int  getNum() {
     startKata(NULL);
     return atoi(currentKata.buffer);
 }
@@ -97,65 +109,81 @@ boolean saveFile(const char *filename, ArrayStat *user, ArrayDin *barang)
         ++i;
     }
 
-    FILE *fptr = fopen(filename, "w");
+    char full_path[100];
+    sprintf(full_path, "config/%s", filename);
+
+    FILE *fptr = fopen(full_path, "w");
 
     fprintf(fptr, "%d\n", barang->len);
+    // printf("%d\n", barang->len);
     for (int i = 0; i < barang->len; ++i)
     {
         Barang bjir = (barang->arr)[i];
         fprintf(fptr, "%d %s\n", bjir.price, bjir.name);
+        // printf("%d %s\n", bjir.price, bjir.name);
     }
 
     fprintf(fptr, "%d\n", user->len);
+    // printf("%d\n", user->len);
     for (int i = 0; i < user->len; ++i)
     {
         User bjir = (user->arr)[i];
         fprintf(fptr, "%d %s %s\n", bjir.money, bjir.name, bjir.password);
-        
-        
+        // printf("%d %s %s\n", bjir.money, bjir.name, bjir.password);
+
         fprintf(fptr, "%d\n", bjir.riwayat_pembelian.len);
+        // printf("%d\n", bjir.riwayat_pembelian.len);
         while(bjir.riwayat_pembelian.len) {
-            fprintf(fptr, "%d %s\n", top(bjir.riwayat_pembelian));
+            StackElType curr = top(bjir.riwayat_pembelian);
+            fprintf(fptr, "%d %s\n", curr.harga_total, curr.nama_barang);
+            // printf("%d| %d %s\n", bjir.riwayat_pembelian.len, curr.harga_total, curr.nama_barang);
             pop(&bjir.riwayat_pembelian);
         }
 
         fprintf(fptr, "%d\n",bjir.wishlist.len);
+        // printf("%d\n", bjir.wishlist.len);
         while (bjir.wishlist.len)
         {
             fprintf(fptr, "%s\n", bjir.wishlist.head->data);
+            // printf("%s\n", bjir.wishlist.head->data);
+            LinkedListDeleteBeginning(&(bjir.wishlist));
         }
     }
 
+    fclose(fptr);
+    fptr = fopen("config/default/default.txt", "w");
+    fprintf(fptr, "config/%s\n", filename);
     fclose(fptr);
     return true;
 }
 
 void loadBarang(ArrayDin *barang) {
-    printf("Retrieving barang length...\n");
+    // printf("Retrieving barang length...\n");
     int n = atoi(currentKata.buffer);
-    printf("Barang length retrieved : %d\n", n);
+    // printf("Barang length retrieved : %d\n", n);
     while (n--)
     {
         Barang item;
-        printf("Adding barang #%d...\n", n+1);
-        printf("Retrieving barang #%d's price..\n", n+1);
+        // printf("Adding barang #%d...\n", n+1);
+        // printf("Retrieving barang #%d's price..\n", n+1);
         advKata();
         setBarangPrice(&item, atoi(currentKata.buffer));
-        printf("barang #%d's price retrieved: %s\n",n+1 ,currentKata.buffer);
+        // printf("barang #%d's price retrieved: %s\n",n+1 ,currentKata.buffer);
 
-        printf("Retrieving barang #%d's name..\n", n+1);
+        // printf("Retrieving barang #%d's name..\n", n+1);
         advKataMajemuk();
-        printf("barang #%d's name retrieved: %s\n", n+1,currentKata.buffer);
+        // printf("barang #%d's name retrieved: %s\n", n+1,currentKata.buffer);
         setBarangName(&item, currentKata.buffer);
 
         ArrayDinInsertEnd(barang, item);
-        printf("Barang #%d added successfully:D\n");
+        // printf("Barang #%d added successfully:D\n");
     }
 }
 
 void loadWishlist(User* u) {
 
-    u->wishlist.head = NULL;
+    createEmptyLinkedList(&(u->wishlist));
+
     advKata();
     int n = atoi(currentKata.buffer);
     while (n--)
@@ -168,6 +196,8 @@ void loadWishlist(User* u) {
 
 void loadUserData(ArrayStat *user_list) {
     User u;
+    
+    MapCreateEmpty(&(u.keranjang));
 
     advKata();
     setMoney(&u,atoi(currentKata.buffer));
@@ -186,7 +216,7 @@ void loadUserData(ArrayStat *user_list) {
 
 void loadRiwayatPembelianUser(User* user) {
 
-    user->riwayat_pembelian.top = NULL;
+    StackInitEmpty(&(user->riwayat_pembelian));
 
     advKata();
     int n = atoi(currentKata.buffer);
@@ -216,16 +246,24 @@ boolean validateFilename(const char *filename) {
 
 boolean Load(const char *filename, ArrayStat *user, ArrayDin *barang)
 {
+    
+    if(filename == NULL) {
+        startKata("config/default/default.txt");
+        close();
+        // printf(currentKata.buffer);
+        startKata(currentKata.buffer);
+    } else {
+        char full_path[100]; 
 
-    // full path construction
-    if(!validateFilename(filename)) return false;
+        // full path construction
+        if(!validateFilename(filename)) return false;
 
-    char full_path[100];
-    sprintf(full_path, "config/%s", filename);
+        sprintf(full_path, "config/%s", filename);
 
-    // open the stream
-    // printf("Opening config file: %s...\n", filename);
-    startKata(full_path);
+        // open the stream
+        // printf("Opening config file: %s...\n", filename);
+        startKata(full_path);
+    }
     // printf("%s opened successfully:D\n", filename);
     // printf("Loading barang...\n");
     loadBarang(barang);
@@ -235,6 +273,7 @@ boolean Load(const char *filename, ArrayStat *user, ArrayDin *barang)
     // printf("User loaded successfully:D\n");
     // printf("completed.\n");
     close();
+    // return false;
     return true;
 }
 

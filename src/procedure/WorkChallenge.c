@@ -1,3 +1,9 @@
+#include <stdio.h>
+#include "../adt/MesinKata/MesinKata.h"
+
+void W0RDL3();
+void TebakAngka();
+
 void WorkChallenge()
 {
     puts("Daftar challenge yang tersedia:");
@@ -15,5 +21,7 @@ void WorkChallenge()
     else if (num == 2)
     {
         W0RDL3();
+    }else{
+        
     }
 }

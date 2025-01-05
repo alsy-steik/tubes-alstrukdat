@@ -6,6 +6,7 @@
 #include "../adt/MesinKata/MesinKata.h"
 #include "../adt/Barang/Barang.h"
 #include "../adt/ArrayDin/ArrayDin.h"
+#include "../util/util.h"
 
 void store_list(ArrayDin arr);
 

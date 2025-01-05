@@ -20,7 +20,7 @@ typedef struct stack {
 } Stack;
 
 void StackInitEmpty(Stack *st);
-int isEmpty(Stack st);
+int StackisEmpty(Stack st);
 void push(Stack *stack, StackElType el);
 void pushNT(Stack *stack, const char *nama_barang, int total_harga);
 void pop(Stack *stack);

@@ -4,6 +4,7 @@
 #include "../adt/MesinKarakter/MesinKarakter.h"
 #include "../adt/MesinKata/MesinKata.h"
 #include "../boolean.h"
+#include "../util/util.h"
 
 // https://www.tutorialspoint.com/c_standard_library/time_h.htm
 // MAKRO time.h
@@ -36,7 +37,7 @@ void Work(){
     DaftarWork();
     printf("Masukkan pekerjaan yang dipilih: ");
     startKataMajemuk(NULL);
-    salinKataMajemuk();
+    // salinKataMajemuk();
     
     printf("\n");
     // is_same_string(InputBuffer, "Inator Connoisseur");
@@ -73,7 +74,8 @@ void Work(){
         DaftarWork();
         printf("Masukkan pekerjaan yang dipilih: ");
         startKataMajemuk(NULL);
-        salinKataMajemuk();   
+        // salinKataMajemuk();   
+        printf("%s\n", currentKata.buffer);
         printf("\n");
     }
 

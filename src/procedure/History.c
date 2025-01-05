@@ -2,25 +2,22 @@
 #include "../adt/Stack/stack.h"
 #include "../adt/MesinKata/MesinKata.h"
 
-Stack history;
-
-void showHistory(){
-    int banyak;
+void showHistory(Stack history, int n){
     int Counter = 0;
     Stack temporary;
     StackInitEmpty(&temporary);
 
     printf("Berapa Transaksi yang Ingin Ditampilkan?\n");
-    startKata(NULL);
-    banyak = getNum();
+    // startKata(NULL);
+    // banyak = getNum();
 
     printf("========== RIWAYAT TRANSAKSI ANDA ==========\n");
-     if (isEmpty(history)) {
+     if (StackisEmpty(history)) {
         printf("Anda belum beli apapun -w-\n");
         return;
     }
 
-    while (!isEmpty(history) && Counter < banyak){
+    while (!StackisEmpty(history) && Counter < n){
         StackElement sekarang = top(history);
         printf("%d. %s %d\n", Counter + 1, sekarang.nama_barang, sekarang.harga_total);
 
@@ -30,7 +27,7 @@ void showHistory(){
     }
     printf("========== RIWAYAT TRANSAKSI ANDA ==========\n");
 
-    while (!isEmpty(temporary)){
+    while (!StackisEmpty(temporary)){
         push(&history, top(temporary));
         pop(&temporary);
     }

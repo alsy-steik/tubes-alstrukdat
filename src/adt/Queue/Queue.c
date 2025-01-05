@@ -3,6 +3,7 @@
 #include "../Barang/Barang.h"
 #include "../../boolean.h"
 #include "../MesinKata/MesinKata.h"
+#include "../../util/util.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -30,7 +31,7 @@ boolean contains(Queue q, const char* search) {
        ++i;
     }
 
-    puts("asvga");
+    // puts("asvga");
     return result;
 }
 
